@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import LiquidEtherBackground from './components/LiquidEther.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
 import MagicBento from './components/MagicBento.jsx'
@@ -300,149 +300,379 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
 
-          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <img src="http://static.photos/technology/1024x576/4" alt="KU-STAR Research" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Research Internship</div>
-                  <span className="ml-4 text-gray-500 dark:text-gray-400">Summer 2022</span>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">KU-STAR Program, Kyoto University, Japan</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Conducted cutting-edge research in engineering solutions under the guidance of leading professors at one of Japan's top universities.</p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Developed novel approaches to complex engineering problems</span></li>
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Collaborated with international research team</span></li>
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Presented findings at university symposium</span></li>
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Machine Learning</span>
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Data Analysis</span>
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Research</span>
-                </div>
-              </div>
-            </div>
-          </GlassSurface>
+          {(() => {
+            const researchItems = [
+              {
+                id: 'ku-star',
+                title: 'KU-STAR Program, Kyoto University, Japan',
+                label: 'Research Internship',
+                labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+                period: 'Summer 2022',
+                description:
+                  "Conducted cutting-edge research in engineering solutions under the guidance of leading professors at one of Japan's top universities.",
+                bullets: [
+                  'Developed novel approaches to complex engineering problems',
+                  'Collaborated with international research team',
+                  'Presented findings at university symposium'
+                ],
+                tags: ['Machine Learning', 'Data Analysis', 'Research'],
+                image: 'http://static.photos/technology/1024x576/4',
+                imageAlt: 'KU-STAR Research'
+              },
+              {
+                id: 'driver-gaze',
+                title: 'Driver Gaze Detection',
+                label: 'Academic Project',
+                labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
+                period: '',
+                description:
+                  'Developed a computer vision system to detect driver attention levels using OpenCV and deep learning.',
+                bullets: [],
+                tags: [],
+                image: 'http://static.photos/technology/1024x576/6',
+                imageAlt: 'Driver Gaze Detection'
+              },
+              {
+                id: 'surge-lidar',
+                title: 'SURGE LiDAR Research',
+                label: 'Research Project',
+                labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
+                period: '',
+                description: 'Worked on LiDAR data processing and analysis at IIT Kanpur under SURGE program.',
+                bullets: [],
+                tags: [],
+                image: 'http://static.photos/technology/1024x576/7',
+                imageAlt: 'SURGE LiDAR Research'
+              },
+              {
+                id: 'robotics-rover',
+                title: 'Robotics Club Rover',
+                label: 'Club Project',
+                labelClasses: 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200',
+                period: '',
+                description: 'Designed and programmed autonomous rover for inter-college competitions.',
+                bullets: [],
+                tags: [],
+                image: 'http://static.photos/technology/1024x576/8',
+                imageAlt: 'Robotics Club Rover'
+              }
+            ];
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="100">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">Academic Project</div></div>
-                <h3 className="text-xl font-bold mb-2">Driver Gaze Detection</h3>
-                <p className="text-gray-200/90 dark:text-gray-200 mb-4">Developed a computer vision system to detect driver attention levels using OpenCV and deep learning.</p>
-                <a href="#" className="text-blue-300 dark:text-blue-300 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">View on GitHub<i data-feather="arrow-right" className="ml-1 w-4 h-4"></i></a>
-              </div>
-            </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="200">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Research Project</div></div>
-                <h3 className="text-xl font-bold mb-2">SURGE LiDAR Research</h3>
-                <p className="text-gray-200/90 dark:text-gray-200 mb-4">Worked on LiDAR data processing and analysis at IIT Kanpur under SURGE program.</p>
-                <a href="#" className="text-blue-300 dark:text-blue-300 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">View Details<i data-feather="arrow-right" className="ml-1 w-4 h-4"></i></a>
-              </div>
-            </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="300">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Club Project</div></div>
-                <h3 className="text-xl font-bold mb-2">Robotics Club Rover</h3>
-                <p className="text-gray-200/90 dark:text-gray-200 mb-4">Designed and programmed autonomous rover for inter-college competitions.</p>
-                <a href="#" className="text-blue-300 dark:text-blue-300 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">View Demo<i data-feather="arrow-right" className="ml-1 w-4 h-4"></i></a>
-              </div>
-            </GlassSurface>
-          </div>
+            const [featuredId, setFeaturedId] = useState(researchItems[0].id);
+            const featured = researchItems.find(i => i.id === featuredId) || researchItems[0];
+            const others = researchItems.filter(i => i.id !== featured.id);
+
+            return (
+              <>
+                <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
+                  <div className="md:flex">
+                    <div className="md:w-1/3">
+                      <img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-8 md:w-2/3">
+                      <div className="flex items-center mb-4">
+                        <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
+                        {featured.period ? (
+                          <span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>
+                        ) : null}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4">{featured.title}</h3>
+                      {featured.description ? (
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
+                      ) : null}
+                      {featured.bullets && featured.bullets.length > 0 ? (
+                        <ul className="space-y-2 mb-6">
+                          {featured.bullets.map((b, idx) => (
+                            <li key={idx} className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>{b}</span></li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {featured.tags && featured.tags.length > 0 ? (
+                        <div className="flex flex-wrap gap-2">
+                          {featured.tags.map((t, idx) => (
+                            <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </GlassSurface>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {others.map((item, i) => (
+                    <GlassSurface
+                      key={item.id}
+                      className="rounded-xl overflow-hidden transition-all duration-300 glass-card cursor-pointer"
+                      data-aos="fade-up"
+                      data-aos-delay={(i + 1) * 100}
+                    >
+                      <div
+                        className="p-6"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setFeaturedId(item.id)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedId(item.id); }}
+                      >
+                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
+                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-gray-200/90 dark:text-gray-200 mb-4">{item.description}</p>
+                        {/* Optional link row could go here if needed */}
+                      </div>
+                    </GlassSurface>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Work Experience</h2>
-          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-            <div className="md:flex">
-              <div className="md:w-1/4 bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center p-8">
-                <img src="http://static.photos/office/640x360/5" alt="Atlassian" className="w-full max-w-[200px]" />
-              </div>
-              <div className="p-8 md:w-3/4">
-                <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Software Engineering Intern</div>
-                  <span className="ml-4 text-gray-500 dark:text-gray-400">Summer 2023</span>
+          {(() => {
+            const experienceItems = [
+              {
+                id: 'atlassian',
+                company: 'Atlassian',
+                label: 'Software Engineering Intern',
+                labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+                period: 'Summer 2023',
+                description: "Worked on core product development for one of the world's leading software companies.",
+                bullets: [
+                  'Developed and optimized backend services using Golang',
+                  'Implemented CI/CD pipelines improving deployment efficiency by 40%',
+                  'Collaborated with cross-functional teams across multiple time zones'
+                ],
+                tags: ['Golang', 'Docker', 'Kubernetes', 'AWS'],
+                image: 'http://static.photos/office/640x360/5',
+                imageAlt: 'Atlassian'
+              },
+              {
+                id: 'skyai',
+                company: 'SkyAI',
+                label: 'AI Intern',
+                labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
+                period: 'Winter 2022',
+                description: 'Developed drone tracking algorithms using computer vision and machine learning techniques.',
+                bullets: [],
+                tags: ['Python', 'OpenCV', 'TensorFlow'],
+                image: 'http://static.photos/office/640x360/6',
+                imageAlt: 'SkyAI'
+              },
+              {
+                id: 'vibinex',
+                company: 'Vibinex',
+                label: 'Software Engineer Intern',
+                labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
+                period: 'Summer 2021',
+                description: 'Contributed to full-stack development of productivity tools for software teams.',
+                bullets: [],
+                tags: ['JavaScript', 'React', 'Node.js'],
+                image: 'http://static.photos/office/640x360/7',
+                imageAlt: 'Vibinex'
+              }
+            ];
+
+            const [featuredExp, setFeaturedExp] = useState(experienceItems[0].id);
+            const featured = experienceItems.find(i => i.id === featuredExp) || experienceItems[0];
+            const others = experienceItems.filter(i => i.id !== featured.id);
+
+            return (
+              <>
+                <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
+                  <div className="md:flex">
+                    <div className="md:w-1/4 bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center p-8">
+                      {featured.image ? (
+                        <img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" />
+                      ) : null}
+                    </div>
+                    <div className="p-8 md:w-3/4">
+                      <div className="flex items-center mb-4">
+                        <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
+                        {featured.period ? (
+                          <span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>
+                        ) : null}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2">{featured.company}</h3>
+                      {featured.description ? (
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
+                      ) : null}
+                      {featured.bullets && featured.bullets.length > 0 ? (
+                        <ul className="space-y-2 mb-6">
+                          {featured.bullets.map((b, idx) => (
+                            <li key={idx} className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>{b}</span></li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {featured.tags && featured.tags.length > 0 ? (
+                        <div className="flex flex-wrap gap-2">
+                          {featured.tags.map((t, idx) => (
+                            <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </GlassSurface>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {others.map((item, i) => (
+                    <GlassSurface
+                      key={item.id}
+                      className="rounded-xl overflow-hidden glass-card transition-all duration-300 cursor-pointer"
+                      data-aos="fade-up"
+                      data-aos-delay={(i + 1) * 100}
+                    >
+                      <div
+                        className="p-6"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setFeaturedExp(item.id)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedExp(item.id); }}
+                      >
+                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
+                        <h3 className="text-xl font-bold mb-2">{item.company}</h3>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
+                        {item.tags && item.tags.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {item.tags.map((t, idx) => (
+                              <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    </GlassSurface>
+                  ))}
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Atlassian</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Worked on core product development for one of the world's leading software companies.</p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Developed and optimized backend services using Golang</span></li>
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Implemented CI/CD pipelines improving deployment efficiency by 40%</span></li>
-                  <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Collaborated with cross-functional teams across multiple time zones</span></li>
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Golang</span>
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Docker</span>
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Kubernetes</span>
-                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">AWS</span>
-                </div>
-              </div>
-            </div>
-          </GlassSurface>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">AI Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Winter 2022</span></div>
-                <h3 className="text-xl font-bold mb-2">SkyAI</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Developed drone tracking algorithms using computer vision and machine learning techniques.</p>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Python</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">OpenCV</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">TensorFlow</span></div>
-              </div>
-            </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Software Engineer Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Summer 2021</span></div>
-                <h3 className="text-xl font-bold mb-2">Vibinex</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Contributed to full-stack development of productivity tools for software teams.</p>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">JavaScript</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">React</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Node.js</span></div>
-              </div>
-            </GlassSurface>
-          </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 
       <section id="leadership" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Leadership & Cultural Impact</h2>
-          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-            <div className="md:flex">
-              <div className="md:w-1/3"><img src="http://static.photos/sport/1024x576/6" alt="Inter IIT" className="w-full h-full object-cover" /></div>
-              <div className="p-8 md:w-2/3">
-                <div className="flex items-center mb-4"><div className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Contingent Leader</div><span className="ml-4 text-gray-500 dark:text-gray-400">2022-2023</span></div>
-                <h3 className="text-2xl font-bold mb-4">Inter IIT Cultural Meet</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Led IIT Kanpur's contingent of 250+ members at India's largest inter-collegiate cultural festival.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">250+</div><div className="text-gray-700 dark:text-gray-200">Team Members</div></div>
-                  <div className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">15</div><div className="text-gray-700 dark:text-gray-200">Medals Won</div></div>
+          {(() => {
+            const leadershipItems = [
+              {
+                id: 'inter-iit',
+                title: 'Inter IIT Cultural Meet',
+                label: 'Contingent Leader',
+                labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+                period: '2022-2023',
+                description: "Led IIT Kanpur's contingent of 250+ members at India's largest inter-collegiate cultural festival.",
+                image: 'http://static.photos/sport/1024x576/6',
+                imageAlt: 'Inter IIT',
+                metrics: [
+                  { value: '250+', label: 'Team Members' },
+                  { value: '15', label: 'Medals Won' }
+                ],
+                tags: ['Leadership', 'Event Management', 'Team Building']
+              },
+              {
+                id: 'antaragni',
+                title: "Antaragni '24",
+                label: 'Head, Media & Publicity',
+                labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
+                period: '2023-2024',
+                description: "Led 120+ member team for Asia's largest college cultural festival with INR 2 Cr budget.",
+                image: 'http://static.photos/event/1024x576/3',
+                imageAlt: 'Antaragni',
+                metrics: [
+                  { value: '1M+', label: 'Reach' },
+                  { value: '120+', label: 'Team Size' }
+                ],
+                tags: ['Marketing', 'Branding', 'Social Media']
+              },
+              {
+                id: 'film-club',
+                title: 'Film Club, IIT Kanpur',
+                label: 'Coordinator',
+                labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
+                period: '2021-2023',
+                description: 'Led film production initiatives, winning Inter IIT medals and reaching 8K+ viewership.',
+                image: 'http://static.photos/event/1024x576/4',
+                imageAlt: 'Film Club',
+                metrics: [
+                  { value: '8K+', label: 'Viewership' },
+                  { value: '3', label: 'Awards' }
+                ],
+                tags: ['Film Production', 'Storytelling', 'Creative Direction']
+              }
+            ];
+
+            const [featuredLead, setFeaturedLead] = useState(leadershipItems[0].id);
+            const featured = leadershipItems.find(i => i.id === featuredLead) || leadershipItems[0];
+            const others = leadershipItems.filter(i => i.id !== featured.id);
+
+            return (
+              <>
+                <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
+                  <div className="md:flex">
+                    <div className="md:w-1/3"><img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" /></div>
+                    <div className="p-8 md:w-2/3">
+                      <div className="flex items-center mb-4"><div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>{featured.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>) : null}</div>
+                      <h3 className="text-2xl font-bold mb-4">{featured.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
+                      {featured.metrics && featured.metrics.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                          {featured.metrics.map((m, idx) => (
+                            <div key={idx} className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">{m.value}</div><div className="text-gray-700 dark:text-gray-200">{m.label}</div></div>
+                          ))}
+                        </div>
+                      ) : null}
+                      {featured.tags && featured.tags.length > 0 ? (
+                        <div className="flex flex-wrap gap-2">
+                          {featured.tags.map((t, idx) => (
+                            <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </GlassSurface>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                  {others.map((item, i) => (
+                    <GlassSurface
+                      key={item.id}
+                      className="rounded-xl overflow-hidden glass-card transition-all duration-300 cursor-pointer"
+                      data-aos="fade-up"
+                      data-aos-delay={(i + 1) * 100}
+                    >
+                      <div
+                        className="p-6"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setFeaturedLead(item.id)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedLead(item.id); }}
+                      >
+                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
+                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
+                        {item.metrics && item.metrics.length > 0 ? (
+                          <div className="grid grid-cols-2 gap-2 mb-2">
+                            {item.metrics.map((m, idx) => (
+                              <div key={idx}><div className="text-xl font-bold gradient-text">{m.value}</div><div className="text-sm text-gray-500">{m.label}</div></div>
+                            ))}
+                          </div>
+                        ) : null}
+                        {item.tags && item.tags.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {item.tags.map((t, idx) => (
+                              <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    </GlassSurface>
+                  ))}
                 </div>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Leadership</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Event Management</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Team Building</span></div>
-              </div>
-            </div>
-          </GlassSurface>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">Head, Media & Publicity</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023-2024</span></div>
-                <h3 className="text-xl font-bold mb-2">Antaragni '24</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Led 120+ member team for Asia's largest college cultural festival with INR 2 Cr budget.</p>
-                <div className="grid grid-cols-2 gap-2 mb-4"><div><div className="text-xl font-bold gradient-text">1M+</div><div className="text-sm text-gray-500">Reach</div></div><div><div className="text-xl font-bold gradient-text">120+</div><div className="text-sm text-gray-500">Team Size</div></div></div>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Marketing</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Branding</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Media</span></div>
-              </div>
-            </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Coordinator</div><span className="ml-4 text-gray-500 dark:text-gray-400">2021-2023</span></div>
-                <h3 className="text-xl font-bold mb-2">Film Club, IIT Kanpur</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Led film production initiatives, winning Inter IIT medals and reaching 8K+ viewership.</p>
-                <div className="grid grid-cols-2 gap-2 mb-4"><div><div className="text-xl font-bold gradient-text">8K+</div><div className="text-sm text-gray-500">Viewership</div></div><div><div className="text-xl font-bold gradient-text">3</div><div className="text-sm text-gray-500">Awards</div></div></div>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Film Production</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Storytelling</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Creative Direction</span></div>
-              </div>
-            </GlassSurface>
-          </div>
+              </>
+            );
+          })()}
           <h3 className="text-2xl font-bold mb-8" data-aos="fade-up">Social Work & Outreach</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
