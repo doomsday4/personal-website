@@ -63,7 +63,7 @@ export default function LiquidEtherBackground({
       return tex;
     }
 
-    const paletteTex = makePaletteTexture(colors);
+    const paletteTex = makePaletteTexture(colors && colors.length ? colors : ['#22d3ee','#10b981','#0ea5e9']);
     const bgVec4 = new THREE.Vector4(0, 0, 0, 0); // always transparent
 
     class CommonClass {

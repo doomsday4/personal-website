@@ -61,8 +61,15 @@ function App() {
     const nav = document.querySelector('nav')
     const onNavShadow = () => {
       if (!nav) return
-      if (window.scrollY > 50) { nav.classList.add('shadow-lg'); nav.classList.remove('shadow-sm') }
-      else { nav.classList.remove('shadow-lg'); nav.classList.add('shadow-sm') }
+      if (window.scrollY > 12) {
+        nav.classList.add('nav-glass');
+        nav.classList.add('shadow-lg');
+        nav.classList.remove('shadow-sm');
+      } else {
+        nav.classList.remove('nav-glass');
+        nav.classList.remove('shadow-lg');
+        nav.classList.add('shadow-sm');
+      }
     }
     window.addEventListener('scroll', onNavShadow)
 
@@ -88,7 +95,7 @@ function App() {
   return (
     <>
       <LiquidEtherBackground />
-      <nav className="fixed w-full z-50 shadow-sm">
+      <nav id="site-nav" className="fixed w-full z-50 shadow-sm transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -136,7 +143,7 @@ function App() {
             <h2 className="text-xl md:text-2xl font-medium mb-6">Final Year Undergraduate, IIT Kanpur | Electrical & Civil Engineering | Machine Learning Minor</h2>
             <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">"Exploring intersections of engineering, AI, and creativity."</p>
             <div className="flex justify-center space-x-4">
-              <a href="#contact" className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-blue-500">Contact Me</a>
+              <a href="#contact" className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 rounded-full font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Contact Me</a>
               <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 focus:ring-2 focus:ring-gray-500">Download Resume</a>
             </div>
           </div>
@@ -415,7 +422,7 @@ function App() {
                 <div className="mb-6"><label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label><input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" /></div>
                 <div className="mb-6"><label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label><input type="email" id="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" /></div>
                 <div className="mb-6"><label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label><textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea></div>
-                <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-blue-500">Send Message</button>
+              <button type="submit" className="w-full bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Send Message</button>
               </GlassSurface>
             </div>
           </div>

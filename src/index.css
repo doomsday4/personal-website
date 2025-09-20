@@ -7,7 +7,8 @@ body {
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    /* Preview new theme: cyan → emerald */
+    background: linear-gradient(90deg, #22d3ee, #10b981);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -27,7 +28,7 @@ body {
     content: '';
     position: absolute;
     width: 0; height: 2px; bottom: -2px; left: 0;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background: linear-gradient(90deg, #22d3ee, #10b981);
     transition: width 0.3s ease;
 }
 .nav-link:hover::after, .active-nav::after { width: 100%; }
@@ -51,3 +52,20 @@ body {
 .dark ::-webkit-scrollbar-thumb { background: #475569; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* Header glass state (appears after scrolling) */
+.nav-glass {
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+.dark .nav-glass {
+    background: rgba(20, 20, 28, 0.35);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+#site-nav {
+    transition: background 180ms ease, backdrop-filter 180ms ease, -webkit-backdrop-filter 180ms ease, box-shadow 180ms ease;
+    will-change: backdrop-filter, background;
+}
