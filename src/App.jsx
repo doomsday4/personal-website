@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
+import LiquidEtherBackground from './components/LiquidEther.jsx'
 
 function App() {
-  const vantaRef = useRef(null)
 
   useEffect(() => {
     const applySavedTheme = () => {
@@ -71,24 +71,7 @@ function App() {
 
     if (window.feather) window.feather.replace()
 
-    const initVanta = () => {
-      if (window.VANTA?.GLOBE && vantaRef.current) {
-        window.VANTA.GLOBE({
-          el: vantaRef.current,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0x3b82f6,
-          backgroundColor: 0x020617,
-          size: 0.8
-        })
-      }
-    }
-    const vantaTimeout = setTimeout(initVanta, 150)
+    // Vanta removed (replaced by Liquid Ether)
 
     return () => {
       themeBtn?.removeEventListener('click', toggleTheme)
@@ -97,13 +80,14 @@ function App() {
       document.removeEventListener('click', handleAnchorClick)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('scroll', onNavShadow)
-      clearTimeout(vantaTimeout)
+      // no cleanup needed
     }
   }, [])
 
   return (
     <>
-      <nav className="fixed w-full z-50 bg-white/80 dark:bg-dark/80 backdrop-blur-md shadow-sm">
+      <LiquidEtherBackground />
+      <nav className="fixed w-full z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -142,7 +126,6 @@ function App() {
       </nav>
 
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div ref={vantaRef} id="vanta-bg" className="absolute inset-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
           <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
             <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg mb-6">
@@ -196,7 +179,7 @@ function App() {
         </div>
       </section>
 
-      <section id="research" className="py-20 bg-gray-100 dark:bg-darker">
+      <section id="research" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
 
@@ -305,7 +288,7 @@ function App() {
         </div>
       </section>
 
-      <section id="leadership" className="py-20 bg-gray-100 dark:bg-darker">
+      <section id="leadership" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Leadership & Cultural Impact</h2>
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12" data-aos="fade-up">
@@ -405,7 +388,7 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="py-20 bg-gray-100 dark:bg-darker">
+      <section id="contact" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Get In Touch</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -438,7 +421,7 @@ function App() {
         </div>
       </section>
 
-      <footer className="bg-gray-900 text-gray-300 py-12">
+      <footer className="text-gray-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0"><a href="#" className="text-xl font-bold gradient-text">Aman Khilani</a><p className="mt-2">Exploring intersections of engineering, AI, and creativity.</p></div>
