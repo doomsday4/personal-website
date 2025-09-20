@@ -6,6 +6,21 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Section spacing and snap scrolling */
+html, body {
+    height: 100%;
+}
+
+#root {
+    scroll-snap-type: y mandatory;
+}
+
+section {
+    scroll-snap-align: start;
+    padding-top: 8rem; /* extra spacing top */
+    padding-bottom: 8rem; /* extra spacing bottom */
+}
+
 /* Theme tokens for glass glow */
 :root {
     --theme-primary-start: oklch(70% 0.14 200);

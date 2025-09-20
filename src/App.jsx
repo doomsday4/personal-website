@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react'
+const profileImg = new URL('./assets/amankhilani.jpg', import.meta.url).href
+const kuStarImg = new URL('./assets/ku-star.jpg', import.meta.url).href
+const driverGazeImg = new URL('./assets/driver-gaze.jpg', import.meta.url).href
+const surgeLidarImg = new URL('./assets/surge-lidar.jpg', import.meta.url).href
+const roboticsRoverImg = new URL('./assets/robotics-rover.jpg', import.meta.url).href
+const atlassianImg = new URL('./assets/atlassian.jpg', import.meta.url).href
+const skyaiImg = new URL('./assets/skyai.jpg', import.meta.url).href
 import LiquidEtherBackground from './components/LiquidEther.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
 import MagicBento from './components/MagicBento.jsx'
@@ -32,7 +39,9 @@ function App() {
     mobileMenuButton?.addEventListener('click', toggleMenu)
 
     const handleAnchorClick = (e) => {
-      const anchor = e.target.closest('a[href^="#"]')
+      const t = e.target
+      if (!(t instanceof Element)) return
+      const anchor = t.closest('a[href^="#"]')
       if (!anchor) return
       const targetId = anchor.getAttribute('href')
       if (!targetId) return
@@ -76,7 +85,9 @@ function App() {
 
     // Cursor-tracked border glow for glass cards
     const updateGlow = (e) => {
-      const target = e.target.closest('.glass-card');
+      const eventTarget = e.target;
+      if (!(eventTarget instanceof Element)) return;
+      const target = eventTarget.closest('.glass-card');
       if (!target) return;
       const rect = target.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -90,6 +101,17 @@ function App() {
 
     import('aos').then(({ default: AOS }) => {
       AOS.init({ duration: 800, easing: 'ease-in-out', once: true })
+      // Ensure observers are in place
+      setTimeout(() => {
+        try { AOS.refreshHard() } catch (_) { /* no-op */ }
+      }, 0)
+      // Fallback: if no element received aos-animate, force-show to avoid hidden sections
+      setTimeout(() => {
+        const nodes = Array.from(document.querySelectorAll('[data-aos]'))
+        if (nodes.length && !nodes.some(n => n.classList.contains('aos-animate'))) {
+          nodes.forEach(n => n.classList.add('aos-animate'))
+        }
+      }, 1200)
     })
 
     if (window.feather) window.feather.replace()
@@ -120,10 +142,12 @@ function App() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#home" className="nav-link active-nav">Home</a>
               <a href="#about" className="nav-link">About</a>
+              <a href="#accolades" className="nav-link">Accolades</a>
               <a href="#research" className="nav-link">Research</a>
-              <a href="#achievements" className="nav-link">Achievements</a>
               <a href="#experience" className="nav-link">Experience</a>
               <a href="#leadership" className="nav-link">Leadership</a>
+              <a href="#skills" className="nav-link">Skills</a>
+              <a href="#social" className="nav-link">Social Work</a>
               <a href="#contact" className="nav-link">Contact</a>
               <button id="theme-toggle" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
                 <i data-feather="moon" className="hidden dark:block"></i>
@@ -141,10 +165,12 @@ function App() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="#home" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
             <a href="#about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+            <a href="#accolades" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Accolades</a>
             <a href="#research" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Research</a>
-            <a href="#achievements" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Achievements</a>
             <a href="#experience" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
             <a href="#leadership" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Leadership</a>
+            <a href="#skills" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Skills</a>
+            <a href="#social" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Social Work</a>
             <a href="#contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
             <button id="theme-toggle-mobile" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-2 focus:ring-blue-500">Toggle Theme</button>
           </div>
@@ -153,22 +179,54 @@ function App() {
 
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
-          <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
-            <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg mb-6">
-              <img src="http://static.photos/people/640x360/1" alt="Aman Khilani" className="w-full h-full object-cover" />
-            </div>
+            <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
+              <div className="group w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg mb-6 transform transition-transform duration-300 ease-out hover:scale-105">
+               <img src={profileImg} alt="Aman Khilani" className="w-full h-full object-cover transform transition-transform duration-500 ease-out scale-105 group-hover:scale-110" />
+              </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Aman Khilani</h1>
-            <h2 className="text-xl md:text-2xl font-medium mb-6">Final Year Undergraduate, IIT Kanpur | Electrical & Civil Engineering | Machine Learning Minor</h2>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">"Exploring intersections of engineering, AI, and creativity."</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#contact" className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 rounded-full font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Contact Me</a>
-              <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 focus:ring-2 focus:ring-gray-500">Download Resume</a>
+            <h2 className="text-xl md:text-2xl font-medium mb-6">Exploring intersections of engineering, creativity and life.</h2>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center">
+            <div className="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12" data-aos="fade-right">
+              <h2 className="text-3xl font-bold mb-6">About Me</h2>
+              <p className="text-lg mb-6">Final year undergraduate student at IIT Kanpur with a passion for engineering, artificial intelligence, and creative problem-solving. My journey has been shaped by diverse experiences in research, leadership, and social impact.</p>
+              <p className="text-lg mb-8">I thrive at the intersection of technology and creativity, whether it's developing machine learning models or leading large-scale cultural events.</p>
+              <div className="flex space-x-4">
+                <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
+                <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
+                <a href="mailto:aman@example.com" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="mail"></i></a>
+              </div>
+            </div>
+            <div className="lg:w-1/2" data-aos="fade-left">
+              <h3 className="text-2xl font-bold mb-6">Education Timeline</h3>
+              <div className="space-y-6">
+                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                  <h4 className="font-bold">B.Tech, IIT Kanpur</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Electrical & Civil Engineering | Machine Learning Minor</p>
+                  <p className="text-sm text-gray-500">2019 - 2023 | CGPA: 8.2/10</p>
+                </div>
+                <div className="border-l-4 border-purple-500 pl-6 py-2">
+                  <h4 className="font-bold">Class XII</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Science Stream</p>
+                  <p className="text-sm text-gray-500">2017 - 2019 | 93.2%</p>
+                </div>
+                <div className="border-l-4 border-indigo-500 pl-6 py-2">
+                  <h4 className="font-bold">Class X</h4>
+                  <p className="text-gray-600 dark:text-gray-300">CBSE Board</p>
+                  <p className="text-sm text-gray-500">2016 - 2017 | 92.8%</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="achievements" className="py-20">
+      <section id="accolades" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Scholastic Achievements</h2>
           {/* Single Bento grid with four category tiles */}
@@ -259,43 +317,6 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center">
-            <div className="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12" data-aos="fade-right">
-              <h2 className="text-3xl font-bold mb-6">About Me</h2>
-              <p className="text-lg mb-6">Final year undergraduate student at IIT Kanpur with a passion for engineering, artificial intelligence, and creative problem-solving. My journey has been shaped by diverse experiences in research, leadership, and social impact.</p>
-              <p className="text-lg mb-8">I thrive at the intersection of technology and creativity, whether it's developing machine learning models or leading large-scale cultural events.</p>
-              <div className="flex space-x-4">
-                <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
-                <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
-                <a href="mailto:aman@example.com" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="mail"></i></a>
-              </div>
-            </div>
-            <div className="lg:w-1/2" data-aos="fade-left">
-              <h3 className="text-2xl font-bold mb-6">Education Timeline</h3>
-              <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-6 py-2">
-                  <h4 className="font-bold">B.Tech, IIT Kanpur</h4>
-                  <p className="text-gray-600 dark:text-gray-300">Electrical & Civil Engineering | Machine Learning Minor</p>
-                  <p className="text-sm text-gray-500">2019 - 2023 | CGPA: 8.2/10</p>
-                </div>
-                <div className="border-l-4 border-purple-500 pl-6 py-2">
-                  <h4 className="font-bold">Class XII</h4>
-                  <p className="text-gray-600 dark:text-gray-300">Science Stream</p>
-                  <p className="text-sm text-gray-500">2017 - 2019 | 93.2%</p>
-                </div>
-                <div className="border-l-4 border-indigo-500 pl-6 py-2">
-                  <h4 className="font-bold">Class X</h4>
-                  <p className="text-gray-600 dark:text-gray-300">CBSE Board</p>
-                  <p className="text-sm text-gray-500">2016 - 2017 | 92.8%</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="research" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
@@ -316,7 +337,7 @@ function App() {
                   'Presented findings at university symposium'
                 ],
                 tags: ['Machine Learning', 'Data Analysis', 'Research'],
-                image: 'http://static.photos/technology/1024x576/4',
+                image: kuStarImg,
                 imageAlt: 'KU-STAR Research'
               },
               {
@@ -329,7 +350,7 @@ function App() {
                   'Developed a computer vision system to detect driver attention levels using OpenCV and deep learning.',
                 bullets: [],
                 tags: [],
-                image: 'http://static.photos/technology/1024x576/6',
+                image: driverGazeImg,
                 imageAlt: 'Driver Gaze Detection'
               },
               {
@@ -341,7 +362,7 @@ function App() {
                 description: 'Worked on LiDAR data processing and analysis at IIT Kanpur under SURGE program.',
                 bullets: [],
                 tags: [],
-                image: 'http://static.photos/technology/1024x576/7',
+                image: surgeLidarImg,
                 imageAlt: 'SURGE LiDAR Research'
               },
               {
@@ -353,7 +374,7 @@ function App() {
                 description: 'Designed and programmed autonomous rover for inter-college competitions.',
                 bullets: [],
                 tags: [],
-                image: 'http://static.photos/technology/1024x576/8',
+                image: roboticsRoverImg,
                 imageAlt: 'Robotics Club Rover'
               }
             ];
@@ -445,7 +466,7 @@ function App() {
                   'Collaborated with cross-functional teams across multiple time zones'
                 ],
                 tags: ['Golang', 'Docker', 'Kubernetes', 'AWS'],
-                image: 'http://static.photos/office/640x360/5',
+                image: atlassianImg,
                 imageAlt: 'Atlassian'
               },
               {
@@ -457,7 +478,7 @@ function App() {
                 description: 'Developed drone tracking algorithms using computer vision and machine learning techniques.',
                 bullets: [],
                 tags: ['Python', 'OpenCV', 'TensorFlow'],
-                image: 'http://static.photos/office/640x360/6',
+                image: skyaiImg,
                 imageAlt: 'SkyAI'
               },
               {
@@ -673,29 +694,11 @@ function App() {
               </>
             );
           })()}
-          <h3 className="text-2xl font-bold mb-8" data-aos="fade-up">Social Work & Outreach</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Volunteer</div><span className="ml-4 text-gray-500 dark:text-gray-400">2020-2022</span></div>
-                <h3 className="text-xl font-bold mb-2">Cybercrime Awareness with CRY</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Educated 1000+ students across 20+ schools in 7 cities about online safety and cybercrime prevention.</p>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Education</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Public Speaking</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Community Service</span></div>
-              </div>
-            </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-              <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023</span></div>
-                <h3 className="text-xl font-bold mb-2">Beyond Barriers (Antaragni x CDAP)</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Created inclusive festival experience for differently-abled students through accessibility initiatives.</p>
-                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Inclusion</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Accessibility</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Impact</span></div>
-              </div>
-            </GlassSurface>
-          </div>
+          
         </div>
       </section>
 
-      <section className="py-20">
+      <section id="skills" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Skills & Tools</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -729,6 +732,30 @@ function App() {
                 <div><div className="flex justify-between mb-1"><span>Docker</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>Kubernetes</span><span>70%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '70%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>AWS</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
+              </div>
+            </GlassSurface>
+          </div>
+        </div>
+      </section>
+
+      <section id="social" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Social Work & Outreach</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+              <div className="p-6">
+                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Volunteer</div><span className="ml-4 text-gray-500 dark:text-gray-400">2020-2022</span></div>
+                <h3 className="text-xl font-bold mb-2">Cybercrime Awareness with CRY</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">Educated 1000+ students across 20+ schools in 7 cities about online safety and cybercrime prevention.</p>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Education</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Public Speaking</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Community Service</span></div>
+              </div>
+            </GlassSurface>
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+              <div className="p-6">
+                <div className="flex items-center mb-4"><div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023</span></div>
+                <h3 className="text-xl font-bold mb-2">Beyond Barriers (Antaragni x CDAP)</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">Created inclusive festival experience for differently-abled students through accessibility initiatives.</p>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Inclusion</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Accessibility</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Impact</span></div>
               </div>
             </GlassSurface>
           </div>
@@ -775,9 +802,12 @@ function App() {
             <div className="flex space-x-6">
               <a href="#home" className="hover:text-white focus:ring-2 focus:ring-white">Home</a>
               <a href="#about" className="hover:text-white focus:ring-2 focus:ring-white">About</a>
+              <a href="#accolades" className="hover:text-white focus:ring-2 focus:ring-white">Accolades</a>
               <a href="#research" className="hover:text-white focus:ring-2 focus:ring-white">Research</a>
-              <a href="#achievements" className="hover:text-white focus:ring-2 focus:ring-white">Achievements</a>
               <a href="#experience" className="hover:text-white focus:ring-2 focus:ring-white">Experience</a>
+              <a href="#leadership" className="hover:text-white focus:ring-2 focus:ring-white">Leadership</a>
+              <a href="#skills" className="hover:text-white focus:ring-2 focus:ring-white">Skills</a>
+              <a href="#social" className="hover:text-white focus:ring-2 focus:ring-white">Social Work</a>
               <a href="#contact" className="hover:text-white focus:ring-2 focus:ring-white">Contact</a>
             </div>
           </div>
