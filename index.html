@@ -5,57 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aman Khilani | Portfolio</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .dark .dark\:bg-dark {
-            background-color: #0f172a;
-        }
-        .dark .dark\:text-light {
-            color: #f8fafc;
-        }
-        .dark .dark\:bg-darker {
-            background-color: #020617;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .active-nav::after {
-            width: 100%;
-        }
-    </style>
+    
+    <!-- Module Script -->
+    <script type="module" src="/src/main.js"></script>
 </head>
 <body class="dark:bg-dark dark:text-light bg-gray-50 text-gray-900 transition-colors duration-300">
     <!-- Navbar -->
@@ -72,13 +29,13 @@
                     <a href="#experience" class="nav-link">Experience</a>
                     <a href="#leadership" class="nav-link">Leadership</a>
                     <a href="#contact" class="nav-link">Contact</a>
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
                         <i data-feather="moon" class="hidden dark:block"></i>
                         <i data-feather="sun" class="dark:hidden"></i>
                     </button>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
                         <i data-feather="menu"></i>
                     </button>
                 </div>
@@ -87,13 +44,13 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark shadow-lg">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#research" class="block px-3 py-2 rounded-md text-base font-medium">Research</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#leadership" class="block px-3 py-2 rounded-md text-base font-medium">Leadership</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-                <button id="theme-toggle-mobile" class="block px-3 py-2 rounded-md text-base font-medium">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="#research" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Research</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
+                <a href="#leadership" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Leadership</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+                <button id="theme-toggle-mobile" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-2 focus:ring-blue-500">
                     Toggle Theme
                 </button>
             </div>
@@ -112,8 +69,8 @@
                 <h2 class="text-xl md:text-2xl font-medium mb-6">Final Year Undergraduate, IIT Kanpur | Electrical & Civil Engineering | Machine Learning Minor</h2>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">"Exploring intersections of engineering, AI, and creativity."</p>
                 <div class="flex justify-center space-x-4">
-                    <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300">Contact Me</a>
-                    <a href="#" class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300">Download Resume</a>
+                    <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-blue-500">Contact Me</a>
+                    <a href="#" class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 focus:ring-2 focus:ring-gray-500">Download Resume</a>
                 </div>
             </div>
         </div>
@@ -132,7 +89,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">KU-STAR Research</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Research internship at Kyoto University, Japan focusing on advanced engineering solutions.</p>
-                        <a href="#research" class="text-blue-500 dark:text-blue-400 font-medium hover:underline">Learn more</a>
+                        <a href="#research" class="text-blue-500 dark:text-blue-400 font-medium hover:underline focus:ring-2 focus:ring-blue-500">Learn more</a>
                     </div>
                 </div>
                 
@@ -144,7 +101,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Inter IIT Leadership</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Led 250+ members as Contingent Leader at India's largest college sports meet.</p>
-                        <a href="#leadership" class="text-blue-500 dark:text-blue-400 font-medium hover:underline">Learn more</a>
+                        <a href="#leadership" class="text-blue-500 dark:text-blue-400 font-medium hover:underline focus:ring-2 focus:ring-blue-500">Learn more</a>
                     </div>
                 </div>
                 
@@ -156,7 +113,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Atlassian Internship</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Software engineering internship at leading tech company Atlassian.</p>
-                        <a href="#experience" class="text-blue-500 dark:text-blue-400 font-medium hover:underline">Learn more</a>
+                        <a href="#experience" class="text-blue-500 dark:text-blue-400 font-medium hover:underline focus:ring-2 focus:ring-blue-500">Learn more</a>
                     </div>
                 </div>
             </div>
@@ -172,13 +129,13 @@
                     <p class="text-lg mb-6">Final year undergraduate student at IIT Kanpur with a passion for engineering, artificial intelligence, and creative problem-solving. My journey has been shaped by diverse experiences in research, leadership, and social impact.</p>
                     <p class="text-lg mb-8">I thrive at the intersection of technology and creativity, whether it's developing machine learning models or leading large-scale cultural events.</p>
                     <div class="flex space-x-4">
-                        <a href="https://linkedin.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <a href="https://linkedin.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                             <i data-feather="linkedin"></i>
                         </a>
-                        <a href="https://github.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <a href="https://github.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                             <i data-feather="github"></i>
                         </a>
-                        <a href="mailto:aman@example.com" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <a href="mailto:aman@example.com" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                             <i data-feather="mail"></i>
                         </a>
                     </div>
@@ -261,7 +218,7 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Driver Gaze Detection</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Developed a computer vision system to detect driver attention levels using OpenCV and deep learning.</p>
-                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center">
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">
                             View on GitHub
                             <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
                         </a>
@@ -277,7 +234,7 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">SURGE LiDAR Research</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Worked on LiDAR data processing and analysis at IIT Kanpur under SURGE program.</p>
-                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center">
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">
                             View Details
                             <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
                         </a>
@@ -293,7 +250,7 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Robotics Club Rover</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Designed and programmed autonomous rover for inter-college competitions.</p>
-                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center">
+                        <a href="#" class="text-blue-500 dark:text-blue-400 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">
                             View Demo
                             <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
                         </a>
@@ -698,7 +655,7 @@
                             </div>
                             <div>
                                 <h4 class="font-medium">Email</h4>
-                                <a href="mailto:aman@example.com" class="text-gray-600 dark:text-gray-300 hover:underline">aman@example.com</a>
+                                <a href="mailto:aman@example.com" class="text-gray-600 dark:text-gray-300 hover:underline focus:ring-2 focus:ring-blue-500">aman@example.com</a>
                             </div>
                         </div>
                         
@@ -708,7 +665,7 @@
                             </div>
                             <div>
                                 <h4 class="font-medium">Phone</h4>
-                                <a href="tel:+919876543210" class="text-gray-600 dark:text-gray-300 hover:underline">+91 98765 43210</a>
+                                <a href="tel:+919876543210" class="text-gray-600 dark:text-gray-300 hover:underline focus:ring-2 focus:ring-purple-500">+91 98765 43210</a>
                             </div>
                         </div>
                         
@@ -726,13 +683,13 @@
                     <div class="mt-8">
                         <h4 class="font-medium mb-4">Connect with me</h4>
                         <div class="flex space-x-4">
-                            <a href="https://linkedin.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            <a href="https://linkedin.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                                 <i data-feather="linkedin"></i>
                             </a>
-                            <a href="https://github.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            <a href="https://github.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                                 <i data-feather="github"></i>
                             </a>
-                            <a href="https://twitter.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            <a href="https://twitter.com" target="_blank" class="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500">
                                 <i data-feather="twitter"></i>
                             </a>
                         </div>
@@ -753,7 +710,7 @@
                             <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label>
                             <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300">
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-blue-500">
                             Send Message
                         </button>
                     </form>
@@ -771,11 +728,11 @@
                     <p class="mt-2">Exploring intersections of engineering, AI, and creativity.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#home" class="hover:text-white">Home</a>
-                    <a href="#about" class="hover:text-white">About</a>
-                    <a href="#research" class="hover:text-white">Research</a>
-                    <a href="#experience" class="hover:text-white">Experience</a>
-                    <a href="#contact" class="hover:text-white">Contact</a>
+                    <a href="#home" class="hover:text-white focus:ring-2 focus:ring-white">Home</a>
+                    <a href="#about" class="hover:text-white focus:ring-2 focus:ring-white">About</a>
+                    <a href="#research" class="hover:text-white focus:ring-2 focus:ring-white">Research</a>
+                    <a href="#experience" class="hover:text-white focus:ring-2 focus:ring-white">Experience</a>
+                    <a href="#contact" class="hover:text-white focus:ring-2 focus:ring-white">Contact</a>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-800 text-center md:text-left">
@@ -783,115 +740,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Initialize Vanta.js
-        VANTA.GLOBE({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x3b82f6,
-            backgroundColor: 0x020617,
-            size: 0.8
-        });
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
-        });
-
-        themeToggleMobile.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
-        });
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        // Feather icons
-        feather.replace();
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg');
-                nav.classList.remove('shadow-sm');
-            } else {
-                nav.classList.remove('shadow-lg');
-                nav.classList.add('shadow-sm');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // Update active nav link on scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active-nav');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active-nav');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
