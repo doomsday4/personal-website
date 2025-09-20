@@ -224,6 +224,38 @@ function App() {
             ]}
           />
           </div>
+
+          <h2 className="text-3xl font-bold text-center mb-12 mt-16" data-aos="fade-up">Extracurricular Achievements</h2>
+          <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
+            <MagicBento
+              className=""
+              data-aos="fade-up"
+              cards={[
+                {
+                  color: '#060010',
+                  title: 'International',
+                  label: 'Category',
+                  content: (
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>From 2000+ entries, nominated among the top 40 submissions in the IFP Short Scriptwriting Challenge ’23</li>
+                      <li>Recognized among the top 30 submissions from 1500+ entries in the IFP 50hr Film Making Challenge ’22</li>
+                    </ul>
+                  )
+                },
+                {
+                  color: '#060010',
+                  title: 'National',
+                  label: 'Category',
+                  content: (
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Acheived a Silver in the 51hr Film Making Challenge & Silver Cup at the Inter IIT Cultural Meet 7.0</li>
+                      <li>Bagged Silver in the 51hr Film Making Challenge & Bronze overall at the Inter IIT Cultural Meet 6.0</li>
+                    </ul>
+                  )
+                }
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -235,9 +267,9 @@ function App() {
               <p className="text-lg mb-6">Final year undergraduate student at IIT Kanpur with a passion for engineering, artificial intelligence, and creative problem-solving. My journey has been shaped by diverse experiences in research, leadership, and social impact.</p>
               <p className="text-lg mb-8">I thrive at the intersection of technology and creativity, whether it's developing machine learning models or leading large-scale cultural events.</p>
               <div className="flex space-x-4">
-                <a href="https://linkedin.com" target="_blank" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
-                <a href="https://github.com" target="_blank" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
-                <a href="mailto:aman@example.com" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="mail"></i></a>
+                <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
+                <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
+                <a href="mailto:aman@example.com" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="mail"></i></a>
               </div>
             </div>
             <div className="lg:w-1/2" data-aos="fade-left">
