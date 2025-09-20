@@ -160,6 +160,27 @@ section {
     border: 1px solid rgba(255,255,255,0.20);
 }
 
+/* Center 3-card accolades grid */
+.accolades-three .card-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+@media (min-width: 768px) {
+    .accolades-three .card-responsive {
+        grid-template-columns: repeat(2, minmax(0, 420px));
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+@media (min-width: 1024px) {
+    .accolades-three .card-responsive {
+        grid-template-columns: repeat(3, minmax(0, 420px));
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
 /* Input glass fields */
 .input-glass {
     background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%);

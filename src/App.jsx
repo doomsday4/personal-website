@@ -194,13 +194,9 @@ function App() {
           <div className="flex flex-col lg:flex-row items-center">
             <div className="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12" data-aos="fade-right">
               <h2 className="text-3xl font-bold mb-6">About Me</h2>
-              <p className="text-lg mb-6">Final year undergraduate student at IIT Kanpur with a passion for engineering, artificial intelligence, and creative problem-solving. My journey has been shaped by diverse experiences in research, leadership, and social impact.</p>
-              <p className="text-lg mb-8">I thrive at the intersection of technology and creativity, whether it's developing machine learning models or leading large-scale cultural events.</p>
-              <div className="flex space-x-4">
-                <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
-                <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
-                <a href="mailto:aman@example.com" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="mail"></i></a>
-              </div>
+              <p className="text-lg mb-6">Hey folks! I'm Aman, a final year undergraduate student at IIT Kanpur with a passion for engineering, machine learning and creative problem-solving. My journey has been shaped by diverse experiences in research, corporate industry, leadership and social impact.</p>
+              <p className="text-lg mb-8">Apart from this, I love watching, shooting, editing and creating films, primarily from a cinematographer's perspective. I'm also a big fan of travelling and photography. I love to explore new places and cultures. </p>
+              <p className="text-lg mb-8"> Music keeps me going. </p>
             </div>
             <div className="lg:w-1/2" data-aos="fade-left">
               <h3 className="text-2xl font-bold mb-6">Education Timeline</h3>
@@ -208,17 +204,17 @@ function App() {
                 <div className="border-l-4 border-blue-500 pl-6 py-2">
                   <h4 className="font-bold">B.Tech, IIT Kanpur</h4>
                   <p className="text-gray-600 dark:text-gray-300">Electrical & Civil Engineering | Machine Learning Minor</p>
-                  <p className="text-sm text-gray-500">2019 - 2023 | CGPA: 8.2/10</p>
+                  <p className="text-sm text-gray-400">2021 - Present</p>
                 </div>
                 <div className="border-l-4 border-purple-500 pl-6 py-2">
-                  <h4 className="font-bold">Class XII</h4>
+                  <h4 className="font-bold">High School, Vrindavan Public School Ajmer</h4>
                   <p className="text-gray-600 dark:text-gray-300">Science Stream</p>
-                  <p className="text-sm text-gray-500">2017 - 2019 | 93.2%</p>
+                  <p className="text-sm text-gray-400">2019 - 2021</p>
                 </div>
                 <div className="border-l-4 border-indigo-500 pl-6 py-2">
-                  <h4 className="font-bold">Class X</h4>
+                  <h4 className="font-bold">Middle School, St. Anselm's Sr. Sec. School Ajmer</h4>
                   <p className="text-gray-600 dark:text-gray-300">CBSE Board</p>
-                  <p className="text-sm text-gray-500">2016 - 2017 | 92.8%</p>
+                  <p className="text-sm text-gray-400">2016 - 2019</p>
                 </div>
               </div>
             </div>
@@ -232,7 +228,7 @@ function App() {
           {/* Single Bento grid with four category tiles */}
           <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
           <MagicBento
-            className=""
+            className="accolades-three"
             data-aos="fade-up"
             cards={[
               {
@@ -241,8 +237,8 @@ function App() {
                 label: 'Category',
                 content: (
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Won 1st place in Atlassian’s internal ShipIt Hackathon among 20 teams</li>
-                    <li>Top 2% among 2000+ submissions in NK Securities Research Hackathon</li>
+                    <li>Won the 1st place in Atlassian’s internal ShipIt Hackathon among 20 teams, during my summer internship</li>
+                    <li>Secured a spot among the top 2% of 2000+ submissions in the NK Securities Research Hackathon 2025</li>
                   </ul>
                 )
               },
@@ -252,8 +248,8 @@ function App() {
                 label: 'Category',
                 content: (
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Received K.N. Saluja Scholarship consecutively among 140+ CE students</li>
-                    <li>Selected 18/900+ for KU-STAR research internship in Japan</li>
+                    <li>Received the K.N. Saluja Scholarship consecutively for the 2nd time, among 140+ CE students for excellence in academics</li>
+                    <li>Selected among the top 18 students for the KU-STAR research program from 900+ applicants</li>
                   </ul>
                 )
               },
@@ -263,19 +259,8 @@ function App() {
                 label: 'Category',
                 content: (
                   <ul className="list-disc list-inside space-y-2">
-                    <li>1st place in National Level ROV design; Rs. 50,000 funding</li>
-                    <li>Best Project Award: Manufacturing Processes – Falconet model</li>
-                  </ul>
-                )
-              },
-              {
-                color: '#060010',
-                title: 'Competitive Exams - 2021',
-                label: 'Category',
-                content: (
-                  <ul className="list-disc list-inside space-y-2">
-                    <li>JEE Advanced Rank 5026 among 2.6 lacs shortlisted</li>
-                    <li>JEE Main Rank 13713 among 10.5 lacs shortlisted</li>
+                    <li>Won the 1st place in the National Level ROV design competition and received a funding of Rs. 50,000</li>
+                    <li>Received the Best Project Award in the course: Manufacturing Processes for a working model of Falconet</li>
                   </ul>
                 )
               }
@@ -286,7 +271,7 @@ function App() {
           <h2 className="text-3xl font-bold text-center mb-12 mt-16" data-aos="fade-up">Extracurricular Achievements</h2>
           <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
             <MagicBento
-              className=""
+              className="accolades-two"
               data-aos="fade-up"
               cards={[
                 {
@@ -295,19 +280,19 @@ function App() {
                   label: 'Category',
                   content: (
                     <ul className="list-disc list-inside space-y-2">
-                      <li>From 2000+ entries, nominated among the top 40 submissions in the IFP Short Scriptwriting Challenge ’23</li>
+                      <li>From over 2000 entries, nominated among the top 40 submissions in the IFP Short Scriptwriting Challenge ’23</li>
                       <li>Recognized among the top 30 submissions from 1500+ entries in the IFP 50hr Film Making Challenge ’22</li>
                     </ul>
                   )
                 },
                 {
                   color: '#060010',
-                  title: 'National',
+                  title: 'Inter IIT Cultural Meet',
                   label: 'Category',
                   content: (
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Acheived a Silver in the 51hr Film Making Challenge & Silver Cup at the Inter IIT Cultural Meet 7.0</li>
-                      <li>Bagged Silver in the 51hr Film Making Challenge & Bronze overall at the Inter IIT Cultural Meet 6.0</li>
+                      <li>Acheived a Silver in the 51hr Film Making Challenge & an overall Silver in Filmmaking Arts Cup at Inter IIT Cultural Meet 7.0</li>
+                      <li>Directed a film, securing the Silver medal in the 51hr Film Making Challenge, in the Filmmaking Arts Cup at Inter IIT Cultural Meet 6.0</li>
                     </ul>
                   )
                 }
