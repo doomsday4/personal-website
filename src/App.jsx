@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import LiquidEtherBackground from './components/LiquidEther.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
+import MagicBento from './components/MagicBento.jsx'
 
 function App() {
 
@@ -105,6 +106,7 @@ function App() {
               <a href="#home" className="nav-link active-nav">Home</a>
               <a href="#about" className="nav-link">About</a>
               <a href="#research" className="nav-link">Research</a>
+              <a href="#achievements" className="nav-link">Achievements</a>
               <a href="#experience" className="nav-link">Experience</a>
               <a href="#leadership" className="nav-link">Leadership</a>
               <a href="#contact" className="nav-link">Contact</a>
@@ -125,6 +127,7 @@ function App() {
             <a href="#home" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
             <a href="#about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
             <a href="#research" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Research</a>
+            <a href="#achievements" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Achievements</a>
             <a href="#experience" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
             <a href="#leadership" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Leadership</a>
             <a href="#contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
@@ -146,6 +149,65 @@ function App() {
               <a href="#contact" className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 rounded-full font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Contact Me</a>
               <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 focus:ring-2 focus:ring-gray-500">Download Resume</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Scholastic Achievements</h2>
+          {/* Single Bento grid with four category tiles */}
+          <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
+          <MagicBento
+            className=""
+            data-aos="fade-up"
+            cards={[
+              {
+                color: '#060010',
+                title: 'Hackathons - 2025',
+                label: 'Category',
+                content: (
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Won 1st place in Atlassian’s internal ShipIt Hackathon among 20 teams</li>
+                    <li>Top 2% among 2000+ submissions in NK Securities Research Hackathon</li>
+                  </ul>
+                )
+              },
+              {
+                color: '#060010',
+                title: 'Scholarships & Selections - 2024',
+                label: 'Category',
+                content: (
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Received K.N. Saluja Scholarship consecutively among 140+ CE students</li>
+                    <li>Selected 18/900+ for KU-STAR research internship in Japan</li>
+                  </ul>
+                )
+              },
+              {
+                color: '#060010',
+                title: 'Competitions - 2023',
+                label: 'Category',
+                content: (
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>1st place in National Level ROV design; Rs. 50,000 funding</li>
+                    <li>Best Project Award: Manufacturing Processes – Falconet model</li>
+                  </ul>
+                )
+              },
+              {
+                color: '#060010',
+                title: 'Competitive Exams - 2021',
+                label: 'Category',
+                content: (
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>JEE Advanced Rank 5026 among 2.6 lacs shortlisted</li>
+                    <li>JEE Main Rank 13713 among 10.5 lacs shortlisted</li>
+                  </ul>
+                )
+              }
+            ]}
+          />
           </div>
         </div>
       </section>
@@ -437,6 +499,7 @@ function App() {
               <a href="#home" className="hover:text-white focus:ring-2 focus:ring-white">Home</a>
               <a href="#about" className="hover:text-white focus:ring-2 focus:ring-white">About</a>
               <a href="#research" className="hover:text-white focus:ring-2 focus:ring-white">Research</a>
+              <a href="#achievements" className="hover:text-white focus:ring-2 focus:ring-white">Achievements</a>
               <a href="#experience" className="hover:text-white focus:ring-2 focus:ring-white">Experience</a>
               <a href="#contact" className="hover:text-white focus:ring-2 focus:ring-white">Contact</a>
             </div>
