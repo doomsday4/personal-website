@@ -6,6 +6,16 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Theme tokens for glass glow */
+:root {
+    --theme-primary-start: oklch(70% 0.14 200);
+    --theme-primary-end: oklch(62% 0.16 160);
+}
+.dark:root {
+    --theme-primary-start: oklch(75% 0.18 220);
+    --theme-primary-end: oklch(68% 0.20 180);
+}
+
 .gradient-text {
     /* Preview new theme: cyan → emerald */
     background: linear-gradient(90deg, #22d3ee, #10b981);
@@ -86,6 +96,41 @@ body {
     background: linear-gradient(135deg, rgba(20,20,28,0.38) 0%, rgba(20,20,28,0.24) 100%);
     border: 1px solid rgba(255,255,255,0.18);
 }
+
+/* Generic glass card hover + border glow (applies to GlassSurface and other tiles) */
+.glass-card {
+    position: relative;
+    transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+}
+.glass-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+}
+.glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 6px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(240px circle at var(--glow-x, 50%) var(--glow-y, 40%),
+        color-mix(in oklch, var(--theme-primary-start), transparent 20%) 0%,
+        color-mix(in oklch, var(--theme-primary-end), transparent 45%) 30%,
+        transparent 62%);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+.glass-card:hover::after { opacity: 1; }
+
+/* Enhance chips and tiles with lift */
+.chip-glass { transition: transform 180ms ease, box-shadow 180ms ease; }
+.chip-glass:hover { transform: translateY(-2px) scale(1.03); }
+.tile-glass { transition: transform 200ms ease, box-shadow 200ms ease; }
+.tile-glass:hover { transform: translateY(-4px) scale(1.02); }
 
 /* Small tile glass blocks (stats like Team Members, Medals Won) */
 .tile-glass {

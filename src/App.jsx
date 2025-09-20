@@ -74,6 +74,20 @@ function App() {
     }
     window.addEventListener('scroll', onNavShadow)
 
+    // Cursor-tracked border glow for glass cards
+    const updateGlow = (e) => {
+      const target = e.target.closest('.glass-card');
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xPct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      const yPct = Math.max(0, Math.min(100, (y / rect.height) * 100));
+      target.style.setProperty('--glow-x', `${xPct}%`);
+      target.style.setProperty('--glow-y', `${yPct}%`);
+    };
+    document.addEventListener('pointermove', updateGlow, { passive: true });
+
     import('aos').then(({ default: AOS }) => {
       AOS.init({ duration: 800, easing: 'ease-in-out', once: true })
     })
@@ -89,6 +103,7 @@ function App() {
       document.removeEventListener('click', handleAnchorClick)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('scroll', onNavShadow)
+      document.removeEventListener('pointermove', updateGlow)
       // no cleanup needed
     }
   }, [])
@@ -253,7 +268,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
 
-          <GlassSurface className="rounded-xl overflow-hidden mb-12" data-aos="fade-up">
+          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
             <div className="md:flex">
               <div className="md:w-1/3">
                 <img src="http://static.photos/technology/1024x576/4" alt="KU-STAR Research" className="w-full h-full object-cover" />
@@ -280,7 +295,7 @@ function App() {
           </GlassSurface>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="100">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">Academic Project</div></div>
                 <h3 className="text-xl font-bold mb-2">Driver Gaze Detection</h3>
@@ -288,7 +303,7 @@ function App() {
                 <a href="#" className="text-blue-300 dark:text-blue-300 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">View on GitHub<i data-feather="arrow-right" className="ml-1 w-4 h-4"></i></a>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="200">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Research Project</div></div>
                 <h3 className="text-xl font-bold mb-2">SURGE LiDAR Research</h3>
@@ -296,7 +311,7 @@ function App() {
                 <a href="#" className="text-blue-300 dark:text-blue-300 font-medium hover:underline flex items-center focus:ring-2 focus:ring-blue-500">View Details<i data-feather="arrow-right" className="ml-1 w-4 h-4"></i></a>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+            <GlassSurface className="rounded-xl overflow-hidden transition-all duration-300 glass-card" data-aos="fade-up" data-aos-delay="300">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Club Project</div></div>
                 <h3 className="text-xl font-bold mb-2">Robotics Club Rover</h3>
@@ -311,7 +326,7 @@ function App() {
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Work Experience</h2>
-          <GlassSurface className="rounded-xl overflow-hidden mb-12" data-aos="fade-up">
+          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
             <div className="md:flex">
               <div className="md:w-1/4 bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center p-8">
                 <img src="http://static.photos/office/640x360/5" alt="Atlassian" className="w-full max-w-[200px]" />
@@ -338,7 +353,7 @@ function App() {
             </div>
           </GlassSurface>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">AI Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Winter 2022</span></div>
                 <h3 className="text-xl font-bold mb-2">SkyAI</h3>
@@ -346,7 +361,7 @@ function App() {
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Python</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">OpenCV</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">TensorFlow</span></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Software Engineer Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Summer 2021</span></div>
                 <h3 className="text-xl font-bold mb-2">Vibinex</h3>
@@ -361,7 +376,7 @@ function App() {
       <section id="leadership" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Leadership & Cultural Impact</h2>
-          <GlassSurface className="rounded-xl overflow-hidden mb-12" data-aos="fade-up">
+          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
             <div className="md:flex">
               <div className="md:w-1/3"><img src="http://static.photos/sport/1024x576/6" alt="Inter IIT" className="w-full h-full object-cover" /></div>
               <div className="p-8 md:w-2/3">
@@ -369,15 +384,15 @@ function App() {
                 <h3 className="text-2xl font-bold mb-4">Inter IIT Cultural Meet</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Led IIT Kanpur's contingent of 250+ members at India's largest inter-collegiate cultural festival.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="tile-glass p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">250+</div><div className="text-gray-700 dark:text-gray-200">Team Members</div></div>
-                  <div className="tile-glass p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">15</div><div className="text-gray-700 dark:text-gray-200">Medals Won</div></div>
+                  <div className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">250+</div><div className="text-gray-700 dark:text-gray-200">Team Members</div></div>
+                  <div className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">15</div><div className="text-gray-700 dark:text-gray-200">Medals Won</div></div>
                 </div>
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Leadership</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Event Management</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Team Building</span></div>
               </div>
             </div>
           </GlassSurface>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">Head, Media & Publicity</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023-2024</span></div>
                 <h3 className="text-xl font-bold mb-2">Antaragni '24</h3>
@@ -386,7 +401,7 @@ function App() {
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Marketing</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Branding</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Media</span></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Coordinator</div><span className="ml-4 text-gray-500 dark:text-gray-400">2021-2023</span></div>
                 <h3 className="text-xl font-bold mb-2">Film Club, IIT Kanpur</h3>
@@ -398,7 +413,7 @@ function App() {
           </div>
           <h3 className="text-2xl font-bold mb-8" data-aos="fade-up">Social Work & Outreach</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Volunteer</div><span className="ml-4 text-gray-500 dark:text-gray-400">2020-2022</span></div>
                 <h3 className="text-xl font-bold mb-2">Cybercrime Awareness with CRY</h3>
@@ -406,7 +421,7 @@ function App() {
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Education</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Public Speaking</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Community Service</span></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
               <div className="p-6">
                 <div className="flex items-center mb-4"><div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023</span></div>
                 <h3 className="text-xl font-bold mb-2">Beyond Barriers (Antaragni x CDAP)</h3>
@@ -422,7 +437,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Skills & Tools</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <GlassSurface className="rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+            <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="100">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="code" className="text-blue-500 mr-2"></i>Programming</h3>
               <div className="space-y-3">
                 <div><div className="flex justify-between mb-1"><span>Golang</span><span>90%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '90%' }}></div></div></div>
@@ -430,7 +445,7 @@ function App() {
                 <div><div className="flex justify-between mb-1"><span>C/C++</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
+            <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="200">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="cpu" className="text-purple-500 mr-2"></i>AI/ML</h3>
               <div className="space-y-3">
                 <div><div className="flex justify-between mb-1"><span>TensorFlow</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
@@ -438,7 +453,7 @@ function App() {
                 <div><div className="flex justify-between mb-1"><span>Scikit-learn</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
+            <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="300">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="database" className="text-green-500 mr-2"></i>Web & Data</h3>
               <div className="space-y-3">
                 <div><div className="flex justify-between mb-1"><span>Next.js</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
@@ -446,7 +461,7 @@ function App() {
                 <div><div className="flex justify-between mb-1"><span>Pandas</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
               </div>
             </GlassSurface>
-            <GlassSurface className="rounded-xl p-6" data-aos="fade-up" data-aos-delay="400">
+            <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="400">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="tool" className="text-yellow-500 mr-2"></i>DevOps</h3>
               <div className="space-y-3">
                 <div><div className="flex justify-between mb-1"><span>Docker</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
@@ -480,7 +495,7 @@ function App() {
               </div>
             </div>
             <div data-aos="fade-left">
-              <GlassSurface className="rounded-xl p-8">
+              <GlassSurface className="rounded-xl p-8 glass-card">
                 <div className="mb-6"><label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label><input type="text" id="name" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Your full name" /></div>
                 <div className="mb-6"><label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label><input type="email" id="email" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="you@example.com" /></div>
                 <div className="mb-6"><label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label><textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Write your message..."></textarea></div>
