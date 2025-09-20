@@ -209,9 +209,9 @@ function App() {
                   <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Presented findings at university symposium</span></li>
                 </ul>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Machine Learning</span>
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Data Analysis</span>
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Research</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Machine Learning</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Data Analysis</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Research</span>
                 </div>
               </div>
             </div>
@@ -267,10 +267,10 @@ function App() {
                   <li className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>Collaborated with cross-functional teams across multiple time zones</span></li>
                 </ul>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Golang</span>
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Kubernetes</span>
-                  <span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Golang</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Docker</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Kubernetes</span>
+                  <span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">AWS</span>
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@ function App() {
                 <div className="flex items-center mb-4"><div className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">AI Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Winter 2022</span></div>
                 <h3 className="text-xl font-bold mb-2">SkyAI</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Developed drone tracking algorithms using computer vision and machine learning techniques.</p>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Python</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">OpenCV</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">TensorFlow</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Python</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">OpenCV</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">TensorFlow</span></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
@@ -289,7 +289,7 @@ function App() {
                 <div className="flex items-center mb-4"><div className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Software Engineer Intern</div><span className="ml-4 text-gray-500 dark:text-gray-400">Summer 2021</span></div>
                 <h3 className="text-xl font-bold mb-2">Vibinex</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Contributed to full-stack development of productivity tools for software teams.</p>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">JavaScript</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">React</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">JavaScript</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">React</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Node.js</span></div>
               </div>
             </GlassSurface>
           </div>
@@ -307,10 +307,10 @@ function App() {
                 <h3 className="text-2xl font-bold mb-4">Inter IIT Cultural Meet</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Led IIT Kanpur's contingent of 250+ members at India's largest inter-collegiate cultural festival.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">250+</div><div className="text-gray-600 dark:text-gray-300">Team Members</div></div>
-                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">15</div><div className="text-gray-600 dark:text-gray-300">Medals Won</div></div>
+                  <div className="tile-glass p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">250+</div><div className="text-gray-700 dark:text-gray-200">Team Members</div></div>
+                  <div className="tile-glass p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">15</div><div className="text-gray-700 dark:text-gray-200">Medals Won</div></div>
                 </div>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Leadership</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Event Management</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Team Building</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Leadership</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Event Management</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Team Building</span></div>
               </div>
             </div>
           </GlassSurface>
@@ -321,7 +321,7 @@ function App() {
                 <h3 className="text-xl font-bold mb-2">Antaragni '24</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Led 120+ member team for Asia's largest college cultural festival with INR 2 Cr budget.</p>
                 <div className="grid grid-cols-2 gap-2 mb-4"><div><div className="text-xl font-bold gradient-text">1M+</div><div className="text-sm text-gray-500">Reach</div></div><div><div className="text-xl font-bold gradient-text">120+</div><div className="text-sm text-gray-500">Team Size</div></div></div>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Marketing</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Branding</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Social Media</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Marketing</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Branding</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Media</span></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
@@ -330,7 +330,7 @@ function App() {
                 <h3 className="text-xl font-bold mb-2">Film Club, IIT Kanpur</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Led film production initiatives, winning Inter IIT medals and reaching 8K+ viewership.</p>
                 <div className="grid grid-cols-2 gap-2 mb-4"><div><div className="text-xl font-bold gradient-text">8K+</div><div className="text-sm text-gray-500">Viewership</div></div><div><div className="text-xl font-bold gradient-text">3</div><div className="text-sm text-gray-500">Awards</div></div></div>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Film Production</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Storytelling</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Creative Direction</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Film Production</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Storytelling</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Creative Direction</span></div>
               </div>
             </GlassSurface>
           </div>
@@ -341,7 +341,7 @@ function App() {
                 <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Volunteer</div><span className="ml-4 text-gray-500 dark:text-gray-400">2020-2022</span></div>
                 <h3 className="text-xl font-bold mb-2">Cybercrime Awareness with CRY</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Educated 1000+ students across 20+ schools in 7 cities about online safety and cybercrime prevention.</p>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Education</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Public Speaking</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Community Service</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Education</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Public Speaking</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Community Service</span></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl overflow-hidden card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
@@ -349,7 +349,7 @@ function App() {
                 <div className="flex items-center mb-4"><div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023</span></div>
                 <h3 className="text-xl font-bold mb-2">Beyond Barriers (Antaragni x CDAP)</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Created inclusive festival experience for differently-abled students through accessibility initiatives.</p>
-                <div className="flex flex-wrap gap-2"><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Inclusion</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Accessibility</span><span className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">Social Impact</span></div>
+                <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Inclusion</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Accessibility</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Impact</span></div>
               </div>
             </GlassSurface>
           </div>
@@ -411,17 +411,17 @@ function App() {
               <div className="mt-8">
                 <h4 className="font-medium mb-4">Connect with me</h4>
                 <div className="flex space-x-4">
-                  <a href="https://linkedin.com" target="_blank" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="linkedin"></i></a>
-                  <a href="https://github.com" target="_blank" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="github"></i></a>
-                  <a href="https://twitter.com" target="_blank" className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:ring-2 focus:ring-blue-500"><i data-feather="twitter"></i></a>
+                  <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="linkedin"></i></a>
+                  <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="github"></i></a>
+                  <a href="https://twitter.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="twitter"></i></a>
                 </div>
               </div>
             </div>
             <div data-aos="fade-left">
               <GlassSurface className="rounded-xl p-8">
-                <div className="mb-6"><label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label><input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" /></div>
-                <div className="mb-6"><label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label><input type="email" id="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" /></div>
-                <div className="mb-6"><label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label><textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea></div>
+                <div className="mb-6"><label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label><input type="text" id="name" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Your full name" /></div>
+                <div className="mb-6"><label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label><input type="email" id="email" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="you@example.com" /></div>
+                <div className="mb-6"><label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label><textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Write your message..."></textarea></div>
               <button type="submit" className="w-full bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Send Message</button>
               </GlassSurface>
             </div>

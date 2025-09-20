@@ -69,3 +69,58 @@ body {
     transition: background 180ms ease, backdrop-filter 180ms ease, -webkit-backdrop-filter 180ms ease, box-shadow 180ms ease;
     will-change: backdrop-filter, background;
 }
+
+/* Glass chips (used inside cards) */
+.chip-glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 100%);
+    backdrop-filter: blur(12px) saturate(1.6);
+    -webkit-backdrop-filter: blur(12px) saturate(1.6);
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.chip-glass:hover {
+    box-shadow: 0 6px 28px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.dark .chip-glass {
+    background: linear-gradient(135deg, rgba(20,20,28,0.38) 0%, rgba(20,20,28,0.24) 100%);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Small tile glass blocks (stats like Team Members, Medals Won) */
+.tile-glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%);
+    backdrop-filter: blur(14px) saturate(1.5);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10);
+}
+.dark .tile-glass {
+    background: linear-gradient(135deg, rgba(20,20,28,0.42) 0%, rgba(20,20,28,0.28) 100%);
+    border: 1px solid rgba(255,255,255,0.20);
+}
+
+/* Input glass fields */
+.input-glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%);
+    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.dark .input-glass {
+    background: linear-gradient(135deg, rgba(20,20,28,0.36) 0%, rgba(20,20,28,0.22) 100%);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+.input-glass::placeholder {
+    color: rgba(100,116,139,0.9);
+}
+.dark .input-glass::placeholder {
+    color: rgba(203,213,225,0.7);
+}
+.input-glass:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring-color);
+    border-color: color-mix(in oklch, var(--ring-color), transparent 40%);
+}
