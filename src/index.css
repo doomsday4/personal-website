@@ -1,10 +1,6 @@
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* Import AOS styles */
 @import 'aos/dist/aos.css';
 
-/* Custom styles */
 body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
@@ -22,40 +18,19 @@ body {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.dark .dark\:bg-dark {
-    background-color: #0f172a;
-}
+.dark .dark\:bg-dark { background-color: #0f172a; }
+.dark .dark\:text-light { color: #f8fafc; }
+.dark .dark\:bg-darker { background-color: #020617; }
 
-.dark .dark\:text-light {
-    color: #f8fafc;
-}
-
-.dark .dark\:bg-darker {
-    background-color: #020617;
-}
-
-.nav-link {
-    position: relative;
-}
-
+.nav-link { position: relative; }
 .nav-link::after {
     content: '';
     position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
+    width: 0; height: 2px; bottom: -2px; left: 0;
     background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     transition: width 0.3s ease;
 }
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.active-nav::after {
-    width: 100%;
-}
+.nav-link:hover::after, .active-nav::after { width: 100%; }
 
 /* Focus ring for accessibility */
 .focus\:ring-2:focus {
@@ -66,36 +41,13 @@ body {
 
 /* Ensure proper contrast for dark mode */
 .dark input:focus,
-.dark textarea:focus {
-    --tw-ring-color: #3b82f6;
-}
+.dark textarea:focus { --tw-ring-color: #3b82f6; }
 
 /* Custom scrollbar for webkit browsers */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-
-.dark ::-webkit-scrollbar-track {
-    background: #1e293b;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-    background: #475569;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark ::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb { background: #475569; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
