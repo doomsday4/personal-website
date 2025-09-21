@@ -16,25 +16,8 @@ import MagicBento from './components/MagicBento.jsx'
 function App() {
 
   useEffect(() => {
-    const applySavedTheme = () => {
-      if (localStorage.getItem('darkMode') === 'true') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
-    applySavedTheme()
-
-    const toggleTheme = () => {
-      document.documentElement.classList.toggle('dark')
-      localStorage.setItem('darkMode', document.documentElement.classList.contains('dark').toString())
-      if (window.feather) window.feather.replace()
-    }
-
-    const themeBtn = document.getElementById('theme-toggle')
-    const themeBtnMobile = document.getElementById('theme-toggle-mobile')
-    themeBtn?.addEventListener('click', toggleTheme)
-    themeBtnMobile?.addEventListener('click', toggleTheme)
+    // Force dark theme permanently
+    document.documentElement.classList.add('dark')
 
     const mobileMenuButton = document.getElementById('mobile-menu-button')
     const mobileMenu = document.getElementById('mobile-menu')
@@ -58,18 +41,27 @@ function App() {
 
     const sections = Array.from(document.querySelectorAll('section'))
     const navLinks = Array.from(document.querySelectorAll('.nav-link'))
-    const onScroll = () => {
-      let current = ''
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        if (window.pageYOffset >= sectionTop - 100) current = section.id || ''
+    // Track latest intersection ratios for all sections and underline the one covering >50% of viewport
+    const sectionRatios = new Map()
+    const sectionIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id || ''
+        if (!id) return
+        sectionRatios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0)
       })
+      let bestId = ''
+      let bestRatio = 0
+      sections.forEach((s) => {
+        const r = sectionRatios.get(s.id) || 0
+        if (r > bestRatio) { bestRatio = r; bestId = s.id }
+      })
+      if (!bestId || bestRatio < 0.5) return
       navLinks.forEach((link) => {
         link.classList.remove('active-nav')
-        if (link.getAttribute('href') === `#${current}`) link.classList.add('active-nav')
+        if (link.getAttribute('href') === `#${bestId}`) link.classList.add('active-nav')
       })
-    }
-    window.addEventListener('scroll', onScroll)
+    }, { threshold: Array.from({ length: 101 }, (_, i) => i / 100) })
+    sections.forEach((s) => sectionIO.observe(s))
 
     const nav = document.querySelector('nav')
     const onNavShadow = () => {
@@ -122,11 +114,9 @@ function App() {
     // Vanta removed (replaced by Liquid Ether)
 
     return () => {
-      themeBtn?.removeEventListener('click', toggleTheme)
-      themeBtnMobile?.removeEventListener('click', toggleTheme)
       mobileMenuButton?.removeEventListener('click', toggleMenu)
       document.removeEventListener('click', handleAnchorClick)
-      window.removeEventListener('scroll', onScroll)
+      try { sectionIO.disconnect() } catch (_) { /* noop */ }
       window.removeEventListener('scroll', onNavShadow)
       document.removeEventListener('pointermove', updateGlow)
       // no cleanup needed
@@ -152,10 +142,10 @@ function App() {
               <a href="#skills" className="nav-link">Skills</a>
               <a href="#social" className="nav-link">Social Work</a>
               <a href="#contact" className="nav-link">Contact</a>
-              <button id="theme-toggle" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
+              {/* <button id="theme-toggle" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
                 <i data-feather="moon" className="hidden dark:block"></i>
                 <i data-feather="sun" className="dark:hidden"></i>
-              </button>
+              </button> */}
       </div>
             <div className="md:hidden flex items-center">
               <button id="mobile-menu-button" className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
@@ -175,7 +165,7 @@ function App() {
             <a href="#skills" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Skills</a>
             <a href="#social" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Social Work</a>
             <a href="#contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
-            <button id="theme-toggle-mobile" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-2 focus:ring-blue-500">Toggle Theme</button>
+            {/* <button id="theme-toggle-mobile" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-2 focus:ring-blue-500">Toggle Theme</button> */}
           </div>
         </div>
       </nav>
@@ -209,7 +199,7 @@ function App() {
                   <p className="text-gray-600 dark:text-gray-300">Electrical & Civil Engineering | Machine Learning Minor</p>
                   <p className="text-sm text-gray-400">2021 - Present</p>
                 </div>
-                <div className="border-l-4 border-purple-500 pl-6 py-2">
+                <div className="border-l-4 border-blue-500 pl-6 py-2">
                   <h4 className="font-bold">High School, Vrindavan Public School Ajmer</h4>
                   <p className="text-gray-600 dark:text-gray-300">Science Stream</p>
                   <p className="text-sm text-gray-400">2019 - 2021</p>
@@ -413,9 +403,9 @@ function App() {
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
                       ) : null}
                       {featured.bullets && featured.bullets.length > 0 ? (
-                        <ul className="space-y-2 mb-6">
+                        <ul className="list-disc list-inside space-y-2 mb-6">
                           {featured.bullets.map((b, idx) => (
-                            <li key={idx} className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>{b}</span></li>
+                            <li key={idx}>{b}</li>
                           ))}
                         </ul>
                       ) : null}
@@ -560,9 +550,9 @@ function App() {
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
                       ) : null}
                       {featured.bullets && featured.bullets.length > 0 ? (
-                        <ul className="space-y-2 mb-6">
+                        <ul className="list-disc list-inside space-y-2 mb-6">
                           {featured.bullets.map((b, idx) => (
-                            <li key={idx} className="flex items-start"><i data-feather="check" className="text-green-500 mr-2 mt-1"></i><span>{b}</span></li>
+                            <li key={idx}>{b}</li>
                           ))}
                         </ul>
                       ) : null}
@@ -630,7 +620,7 @@ function App() {
             const leadershipItems = [
               {
                 id: 'inter-iit',
-                title: 'Inter IIT Cultural Meet',
+                title: 'Inter IIT Cultural Meet 7.0',
                 label: 'Contingent Leader',
                 labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
                 period: '2022-2023',
@@ -696,16 +686,16 @@ function App() {
                           </span>
                         </div>
                         <div className="p-8">
-                          <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
+                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
                           <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
-                          {item.metrics && item.metrics.length > 0 ? (
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
+                        {item.metrics && item.metrics.length > 0 ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                              {item.metrics.map((m, idx) => (
+                            {item.metrics.map((m, idx) => (
                                 <div key={idx} className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">{m.value}</div><div className="text-gray-700 dark:text-gray-200">{m.label}</div></div>
-                              ))}
-                            </div>
-                          ) : null}
+                            ))}
+                          </div>
+                        ) : null}
                           {/* tags intentionally hidden on leadership cards */}
                           {(item.youtubeUrl || item.websiteUrl) ? (
                             <div className="flex gap-3 mt-2 mb-2">
@@ -715,8 +705,8 @@ function App() {
                               {item.websiteUrl ? (
                                 <a href={item.websiteUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">Website</a>
                               ) : null}
-                            </div>
-                          ) : null}
+                          </div>
+                        ) : null}
                         </div>
                       </div>
                     </GlassSurface>
@@ -736,36 +726,39 @@ function App() {
             <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="100">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="code" className="text-blue-500 mr-2"></i>Programming</h3>
               <div className="space-y-3">
-                <div><div className="flex justify-between mb-1"><span>Golang</span><span>90%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '90%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Golang</span><span>65%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '65%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>Python</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>C/C++</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>C/C++</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-blue-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="200">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="cpu" className="text-purple-500 mr-2"></i>AI/ML</h3>
               <div className="space-y-3">
-                <div><div className="flex justify-between mb-1"><span>TensorFlow</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>TensorFlow</span><span>60%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '60%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>OpenCV</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>Scikit-learn</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Scikit-learn</span><span>65%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '65%' }}></div></div></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="300">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="database" className="text-green-500 mr-2"></i>Web & Data</h3>
               <div className="space-y-3">
-                <div><div className="flex justify-between mb-1"><span>Next.js</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>Supabase</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>Pandas</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Next.js</span><span>60%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '60%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Supabase</span><span>70%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '70%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Pandas</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
               </div>
             </GlassSurface>
             <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="400">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="tool" className="text-yellow-500 mr-2"></i>DevOps</h3>
               <div className="space-y-3">
-                <div><div className="flex justify-between mb-1"><span>Docker</span><span>85%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '85%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>Kubernetes</span><span>70%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '70%' }}></div></div></div>
-                <div><div className="flex justify-between mb-1"><span>AWS</span><span>75%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '75%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Docker</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>Kubernetes</span><span>40%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '40%' }}></div></div></div>
+                <div><div className="flex justify-between mb-1"><span>AWS</span><span>50%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-yellow-500 h-2 rounded-full" style={{ width: '50%' }}></div></div></div>
               </div>
             </GlassSurface>
           </div>
+          <p className="text-center text-gray-600 dark:text-gray-300 mt-10" data-aos="fade-up" data-aos-delay="500">
+            Always learning, iterating, and building—one day at a time.
+          </p>
         </div>
       </section>
 
@@ -775,7 +768,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
               <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Volunteer</div><span className="ml-4 text-gray-500 dark:text-gray-400">2020-2022</span></div>
+                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023-2024</span></div>
                 <h3 className="text-xl font-bold mb-2">Cybercrime Awareness with CRY</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Educated 1000+ students across 20+ schools in 7 cities about online safety and cybercrime prevention.</p>
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Education</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Public Speaking</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Community Service</span></div>
@@ -783,7 +776,7 @@ function App() {
             </GlassSurface>
             <GlassSurface className="rounded-xl overflow-hidden glass-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
               <div className="p-6">
-                <div className="flex items-center mb-4"><div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2023</span></div>
+                <div className="flex items-center mb-4"><div className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text sm font-medium">Initiative Lead</div><span className="ml-4 text-gray-500 dark:text-gray-400">2024</span></div>
                 <h3 className="text-xl font-bold mb-2">Beyond Barriers (Antaragni x CDAP)</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Created inclusive festival experience for differently-abled students through accessibility initiatives.</p>
                 <div className="flex flex-wrap gap-2"><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Inclusion</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Accessibility</span><span className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">Social Impact</span></div>
@@ -796,53 +789,32 @@ function App() {
       <section id="contact" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Get In Touch</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div data-aos="fade-right">
+          <div className="grid grid-cols-1 gap-12 place-items-center">
+            <div data-aos="fade-right" className="text-center">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">Feel free to reach out for collaborations, opportunities and if possible, NOT just to say hello haha! </p>
               <div className="space-y-6">
-                <div className="flex items-start"><div className="bg-blue-100 dark:bg-blue-900 p-3 rounded-full mr-4"><i data-feather="mail" className="text-blue-500 dark:text-blue-400"></i></div><div><h4 className="font-medium">Email</h4><a href="mailto:aman@example.com" className="text-gray-600 dark:text-gray-300 hover:underline focus:ring-2 focus:ring-blue-500">aman@example.com</a></div></div>
-                <div className="flex items-start"><div className="bg-purple-100 dark:bg-purple-900 p-3 rounded-full mr-4"><i data-feather="phone" className="text-purple-500 dark:text-purple-400"></i></div><div><h4 className="font-medium">Phone</h4><a href="tel:+919876543210" className="text-gray-600 dark:text-gray-300 hover:underline focus:ring-2 focus:ring-purple-500">+91 98765 43210</a></div></div>
-                <div className="flex items-start"><div className="bg-green-100 dark:bg-green-900 p-3 rounded-full mr-4"><i data-feather="map-pin" className="text-green-500 dark:text-green-400"></i></div><div><h4 className="font-medium">Location</h4><p className="text-gray-600 dark:text-gray-300">IIT Kanpur, Uttar Pradesh, India</p></div></div>
+                <a href="mailto:amankhilani.ajmer@gmail.com" className="inline-flex items-center gap-3 px-4 py-3 chip-glass rounded-full focus:ring-2 focus:ring-blue-500" aria-label="Email">
+                  <i data-feather="mail" className="text-blue-500 dark:text-blue-400"></i>
+                  <span className="font-medium">Email</span>
+                </a>
               </div>
               <div className="mt-8">
                 <h4 className="font-medium mb-4">Connect with me</h4>
-                <div className="flex space-x-4">
-                  <a href="https://linkedin.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="linkedin"></i></a>
-                  <a href="https://github.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="github"></i></a>
-                  <a href="https://twitter.com" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400"><i data-feather="twitter"></i></a>
+                <div className="flex justify-center space-x-4">
+                  <a href="https://www.linkedin.com/in/aman-khilani" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                  <a href="https://github.com/doomsday4" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400" aria-label="GitHub"><i data-feather="github"></i></a>
+                  <a href="https://instagram.com/main.ak56" target="_blank" className="p-3 chip-glass rounded-full transition-colors focus:ring-2 focus:ring-cyan-400" aria-label="Instagram"><i data-feather="instagram"></i></a>
                 </div>
               </div>
-            </div>
-            <div data-aos="fade-left">
-              <GlassSurface className="rounded-xl p-8 glass-card">
-                <div className="mb-6"><label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label><input type="text" id="name" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Your full name" /></div>
-                <div className="mb-6"><label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label><input type="email" id="email" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="you@example.com" /></div>
-                <div className="mb-6"><label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label><textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg input-glass text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300" placeholder="Write your message..."></textarea></div>
-              <button type="submit" className="w-full bg-gradient-to-r from-cyan-400 to-emerald-500 text-slate-900 py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 focus:ring-2 focus:ring-cyan-400">Send Message</button>
-              </GlassSurface>
             </div>
           </div>
         </div>
       </section>
 
       <footer className="text-gray-300 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0"><a href="#" className="text-xl font-bold gradient-text">Aman Khilani</a><p className="mt-2">Exploring intersections of engineering, AI, and creativity.</p></div>
-            <div className="flex space-x-6">
-              <a href="#home" className="hover:text-white focus:ring-2 focus:ring-white">Home</a>
-              <a href="#about" className="hover:text-white focus:ring-2 focus:ring-white">About</a>
-              <a href="#accolades" className="hover:text-white focus:ring-2 focus:ring-white">Accolades</a>
-              <a href="#research" className="hover:text-white focus:ring-2 focus:ring-white">Research</a>
-              <a href="#experience" className="hover:text-white focus:ring-2 focus:ring-white">Experience</a>
-              <a href="#leadership" className="hover:text-white focus:ring-2 focus:ring-white">Leadership</a>
-              <a href="#skills" className="hover:text-white focus:ring-2 focus:ring-white">Skills</a>
-              <a href="#social" className="hover:text-white focus:ring-2 focus:ring-white">Social Work</a>
-              <a href="#contact" className="hover:text-white focus:ring-2 focus:ring-white">Contact</a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-left"><p>© 2023 Aman Khilani. All rights reserved.</p></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">            
+        <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-left"><p>© 2025 Aman Khilani. All rights reserved.</p></div>
       </div>
       </footer>
     </>
