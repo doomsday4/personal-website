@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 const profileImg = new URL('./assets/amankhilani.jpg', import.meta.url).href
 const kuStarImg = new URL('./assets/ku-star.jpg', import.meta.url).href
 const driverGazeImg = new URL('./assets/driver-gaze.png', import.meta.url).href
@@ -15,6 +15,9 @@ import GlassSurface from './components/GlassSurface.jsx'
 import MagicBento from './components/MagicBento.jsx'
 
 function App() {
+  // Refs for section titles
+  const researchTitleRef = useRef(null);
+  const experienceTitleRef = useRef(null);
 
   useEffect(() => {
     // Force dark theme permanently
@@ -300,7 +303,7 @@ function App() {
 
       <section id="research" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
+          <h2 ref={researchTitleRef} className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Research & Technical Experience</h2>
 
           {(() => {
             const researchItems = [
@@ -379,6 +382,18 @@ function App() {
             const featured = researchItems.find(i => i.id === featuredId) || researchItems[0];
             const others = researchItems.filter(i => i.id !== featured.id);
 
+            const handleSelect = (id) => {
+              setFeaturedId(id);
+              // Scroll to research section title
+              setTimeout(() => {
+                researchTitleRef.current?.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'start',
+                  inline: 'nearest'
+                });
+              }, 100);
+            };
+
             return (
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
@@ -448,8 +463,8 @@ function App() {
                         className="p-6"
                         role="button"
                         tabIndex={0}
-                        onClick={() => setFeaturedId(item.id)}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedId(item.id); }}
+                        onClick={() => handleSelect(item.id)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelect(item.id); }}
                       >
                         <div className="flex items-center mb-2"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
                         <h3 className="text-xl font-bold mb-2">{item.title}</h3>
@@ -469,7 +484,7 @@ function App() {
 
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Work Experience</h2>
+          <h2 ref={experienceTitleRef} className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Work Experience</h2>
           {(() => {
             const experienceItems = [
               {
@@ -527,6 +542,18 @@ function App() {
             const [featuredExp, setFeaturedExp] = useState(experienceItems[0].id);
             const featured = experienceItems.find(i => i.id === featuredExp) || experienceItems[0];
             const others = experienceItems.filter(i => i.id !== featured.id);
+
+            const handleExpSelect = (id) => {
+              setFeaturedExp(id);
+              // Scroll to experience section title
+              setTimeout(() => {
+                experienceTitleRef.current?.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'start',
+                  inline: 'nearest'
+                });
+              }, 100);
+            };
 
             return (
               <>
@@ -597,8 +624,8 @@ function App() {
                         className="p-6"
                         role="button"
                         tabIndex={0}
-                        onClick={() => setFeaturedExp(item.id)}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedExp(item.id); }}
+                        onClick={() => handleExpSelect(item.id)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleExpSelect(item.id); }}
                       >
                         <div className="flex items-center mb-2"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
                         <h3 className="text-xl font-bold mb-2">{item.company}</h3>
