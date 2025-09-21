@@ -232,3 +232,13 @@ section {
     box-shadow: 0 0 0 2px var(--ring-color);
     border-color: color-mix(in oklch, var(--ring-color), transparent 40%);
 }
+
+/* Responsive header collapse at 1110px */
+@media (max-width: 1110px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile { display: flex !important; }
+}
+@media (min-width: 1111px) {
+  .nav-desktop { display: flex !important; }
+  .nav-mobile { display: none !important; }
+}

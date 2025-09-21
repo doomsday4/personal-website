@@ -10,6 +10,7 @@ const interIitImg = new URL('./assets/inter-iit.jpg', import.meta.url).href
 const filmClubImg = new URL('./assets/film-club.jpg', import.meta.url).href
 const skyaiImg = new URL('./assets/skyai.jpg', import.meta.url).href
 import LiquidEtherBackground from './components/LiquidEther.jsx'
+import TravelInfiniteScroll from './components/InfiniteScroll.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
 import MagicBento from './components/MagicBento.jsx'
 
@@ -132,7 +133,7 @@ function App() {
             <div className="flex items-center">
               <a href="#" className="text-xl font-bold gradient-text">Aman Khilani</a>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="nav-desktop items-center space-x-8" style={{ display: 'flex' }}>
               <a href="#home" className="nav-link active-nav">Home</a>
               <a href="#about" className="nav-link">About</a>
               <a href="#accolades" className="nav-link">Accolades</a>
@@ -140,6 +141,7 @@ function App() {
               <a href="#experience" className="nav-link">Experience</a>
               <a href="#leadership" className="nav-link">Leadership</a>
               <a href="#skills" className="nav-link">Skills</a>
+              <a href="#travel" className="nav-link">Travel</a>
               <a href="#social" className="nav-link">Social Work</a>
               <a href="#contact" className="nav-link">Contact</a>
               {/* <button id="theme-toggle" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
@@ -147,7 +149,7 @@ function App() {
                 <i data-feather="sun" className="dark:hidden"></i>
               </button> */}
       </div>
-            <div className="md:hidden flex items-center">
+            <div className="nav-mobile flex items-center" style={{ display: 'none' }}>
               <button id="mobile-menu-button" className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-2 focus:ring-blue-500">
                 <i data-feather="menu"></i>
         </button>
@@ -163,6 +165,7 @@ function App() {
             <a href="#experience" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
             <a href="#leadership" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Leadership</a>
             <a href="#skills" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Skills</a>
+            <a href="#travel" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Travel</a>
             <a href="#social" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Social Work</a>
             <a href="#contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
             {/* <button id="theme-toggle-mobile" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-2 focus:ring-blue-500">Toggle Theme</button> */}
@@ -759,6 +762,15 @@ function App() {
           <p className="text-center text-gray-600 dark:text-gray-300 mt-10" data-aos="fade-up" data-aos-delay="500">
             Always learning, iterating, and building—one day at a time.
           </p>
+        </div>
+      </section>
+
+      <section id="travel" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-up">Travel & Photography</h2>
+          <div className="w-full">
+            <TravelInfiniteScroll />
+          </div>
         </div>
       </section>
 
