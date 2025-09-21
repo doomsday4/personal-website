@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 const profileImg = new URL('./assets/amankhilani.jpg', import.meta.url).href
 const kuStarImg = new URL('./assets/ku-star.jpg', import.meta.url).href
-const driverGazeImg = new URL('./assets/driver-gaze.jpg', import.meta.url).href
+const driverGazeImg = new URL('./assets/driver-gaze.png', import.meta.url).href
 const surgeLidarImg = new URL('./assets/surge-lidar.jpg', import.meta.url).href
-const roboticsRoverImg = new URL('./assets/robotics-rover.jpg', import.meta.url).href
+const roboticsRoverImg = new URL('./assets/robotics-rover.webp', import.meta.url).href
 const atlassianImg = new URL('./assets/atlassian.jpg', import.meta.url).href
 const skyaiImg = new URL('./assets/skyai.jpg', import.meta.url).href
 import LiquidEtherBackground from './components/LiquidEther.jsx'
@@ -313,54 +313,66 @@ function App() {
                 title: 'KU-STAR Program, Kyoto University, Japan',
                 label: 'Research Internship',
                 labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
-                period: 'Summer 2022',
+                period: 'Summer 2024',
                 description:
-                  "Conducted cutting-edge research in engineering solutions under the guidance of leading professors at one of Japan's top universities.",
+                  "Worked on Physics-Informed Neural Networks under the supervision of Prof. Manabu Kano, Informatics Lab, Kyoto University",
                 bullets: [
-                  'Developed novel approaches to complex engineering problems',
-                  'Collaborated with international research team',
-                  'Presented findings at university symposium'
+                  'Developed novel approaches to complex engineering problems using Physics-Informed Neural Networks',
+                  'Successfully demonstrated the superiority of PINNs in terms of accuracy, computational cost, and scalability',
+                  'Presented the findings at the university symposium, during the internship'
                 ],
-                tags: ['Machine Learning', 'Data Analysis', 'Research'],
+                tags: ['Machine Learning', 'Data Analysis', 'Research', 'Physics-Informed Neural Networks'],
                 image: kuStarImg,
                 imageAlt: 'KU-STAR Research'
               },
               {
                 id: 'driver-gaze',
-                title: 'Driver Gaze Detection',
+                title: 'Driver Gaze Detection in Static & Moving Vehicles',
                 label: 'Academic Project',
                 labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
-                period: '',
+                period: 'Jan 2024 - Apr 2024',
                 description:
-                  'Developed a computer vision system to detect driver attention levels using OpenCV and deep learning.',
-                bullets: [],
-                tags: [],
+                  'Analyzing driver gaze patterns to enhance vehicle safety, driver fatigue detection systems & human-computer interaction interfaces',
+                bullets: [
+                  'Utilized the Pupil Invisible Eye tracker device to monitor eye movements and installed cameras to track head positions of drivers',
+                  'Conducted field tests with 11 participants, collecting data, to evaluate the performance & reliability of the hardware systems',
+                  'Implemented iris region detection and positional tracking during gaze transitions using cv2, pupil-detectors, argparse, numpy',
+                ],
+                tags: ['Computer Vision', 'Human-Computer Interaction', 'Driver Gaze Detection', 'Vehicle Safety'],
                 image: driverGazeImg,
                 imageAlt: 'Driver Gaze Detection'
               },
               {
                 id: 'surge-lidar',
-                title: 'SURGE LiDAR Research',
+                title: '3D Object Detection for Autonomous Vehicles using LiDAR',
                 label: 'Research Project',
                 labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
-                period: '',
-                description: 'Worked on LiDAR data processing and analysis at IIT Kanpur under SURGE program.',
-                bullets: [],
-                tags: [],
+                period: 'May 2023 - Jul 2023',
+                description: 'Worked on LiDAR based data processing, analysis and object-detection at IIT Kanpur during the SURGE Research program.',
+                bullets: [
+                  'Developed a LiDAR-based 3D object detection system for autonomous vehicles, using Open3D, PyTorch and LiDAR data',
+                  'Implemented point cloud segmentation and clustering algorithms to identify objects in the Indian environment',
+                  'Evaluated the performance of the system using metrics such as precision, recall, and F1 score',
+                ],
+                tags: ['Computer Vision', 'LiDAR', 'Object Detection', 'Autonomous Vehicles'],
                 image: surgeLidarImg,
                 imageAlt: 'SURGE LiDAR Research'
               },
               {
                 id: 'robotics-rover',
-                title: 'Robotics Club Rover',
-                label: 'Club Project',
+                title: 'Rover Base',
+                label: 'Robotics Club Summer Project',
                 labelClasses: 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200',
-                period: '',
-                description: 'Designed and programmed autonomous rover for inter-college competitions.',
-                bullets: [],
-                tags: [],
+                period: 'May 2022 - Jul 2022',
+                description: 'Designed the structure of an autonomous rover, using Fusion 360 and implemented the software using Arduino.',
+                bullets: [
+                  'Studied & analyzed the design and structural components of the Stanford and Monash rovers to create a hybrid of them',
+                  'Implemented the software using Arduino IDE and successfully simulated the rover’s autonomous navigation and obstacle avoidance capabilities',
+                  'Enhanced the rover’s mobility features & rugged terrain handling capabilities, to improve performance on diverse terrains',
+                ],
+                tags: ['Fusion 360', 'Arduino', 'Autonomous Vehicles', 'Robotics'],
                 image: roboticsRoverImg,
-                imageAlt: 'Robotics Club Rover'
+                imageAlt: 'Robotics Club Rover Base'
               }
             ];
 
@@ -372,8 +384,14 @@ function App() {
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
                   <div className="md:flex">
-                    <div className="md:w-1/3">
-                      <img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" />
+                    <div className="md:w-1/3 flex items-center justify-center">
+                      <span className="image-frame">
+                        <img
+                          src={featured.image}
+                          alt={featured.imageAlt}
+                          className={featured.id === 'ku-star' ? 'max-w-full h-auto object-contain' : 'w-full h-full object-cover'}
+                        />
+                      </span>
                     </div>
                     <div className="p-8 md:w-2/3">
                       <div className="flex items-center mb-4">
@@ -490,7 +508,7 @@ function App() {
                   <div className="md:flex">
                     <div className="md:w-1/4 bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center p-8">
                       {featured.image ? (
-                        <img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" />
+                        <span className="image-frame"><img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" /></span>
                       ) : null}
                     </div>
                     <div className="p-8 md:w-3/4">
@@ -617,7 +635,7 @@ function App() {
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
                   <div className="md:flex">
-                    <div className="md:w-1/3"><img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" /></div>
+                    <div className="md:w-1/3"><span className="image-frame"><img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" /></span></div>
                     <div className="p-8 md:w-2/3">
                       <div className="flex items-center mb-4"><div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>{featured.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>) : null}</div>
                       <h3 className="text-2xl font-bold mb-4">{featured.title}</h3>

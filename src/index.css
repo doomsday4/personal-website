@@ -21,6 +21,33 @@ section {
     padding-bottom: 8rem; /* extra spacing bottom */
 }
 
+/* Themed image frame for images inside glass cards */
+.image-frame {
+    position: relative;
+    border-radius: 12px;
+    display: inline-block;
+}
+.image-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+        color-mix(in oklch, var(--theme-primary-start), transparent 60%) 0%,
+        color-mix(in oklch, var(--theme-primary-end), transparent 60%) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.image-frame > img {
+    display: block;
+    border-radius: inherit;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
 /* Theme tokens for glass glow */
 :root {
     --theme-primary-start: oklch(70% 0.14 200);
