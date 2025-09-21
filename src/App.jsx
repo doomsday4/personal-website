@@ -4,7 +4,10 @@ const kuStarImg = new URL('./assets/ku-star.jpg', import.meta.url).href
 const driverGazeImg = new URL('./assets/driver-gaze.png', import.meta.url).href
 const surgeLidarImg = new URL('./assets/surge-lidar.jpg', import.meta.url).href
 const roboticsRoverImg = new URL('./assets/robotics-rover.webp', import.meta.url).href
-const atlassianImg = new URL('./assets/atlassian.jpg', import.meta.url).href
+const atlassianImg = new URL('./assets/atlassian.png', import.meta.url).href
+const antaragniImg = new URL('./assets/antaragni.jpg', import.meta.url).href
+const interIitImg = new URL('./assets/inter-iit.jpg', import.meta.url).href
+const filmClubImg = new URL('./assets/film-club.jpg', import.meta.url).href
 const skyaiImg = new URL('./assets/skyai.jpg', import.meta.url).href
 import LiquidEtherBackground from './components/LiquidEther.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
@@ -179,10 +182,10 @@ function App() {
 
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
-            <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
+          <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
               <div className="group w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg mb-6 transform transition-transform duration-300 ease-out hover:scale-105">
                <img src={profileImg} alt="Aman Khilani" className="w-full h-full object-cover transform transition-transform duration-500 ease-out scale-105 group-hover:scale-110" />
-              </div>
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Aman Khilani</h1>
             <h2 className="text-xl md:text-2xl font-medium mb-6">Exploring intersections of engineering, creativity and life.</h2>
           </div>
@@ -323,7 +326,8 @@ function App() {
                 ],
                 tags: ['Machine Learning', 'Data Analysis', 'Research', 'Physics-Informed Neural Networks'],
                 image: kuStarImg,
-                imageAlt: 'KU-STAR Research'
+                imageAlt: 'KU-STAR Research',
+                githubUrl: 'https://github.com/doomsday4/PINN-for-CSTR.git'
               },
               {
                 id: 'driver-gaze',
@@ -340,7 +344,8 @@ function App() {
                 ],
                 tags: ['Computer Vision', 'Human-Computer Interaction', 'Driver Gaze Detection', 'Vehicle Safety'],
                 image: driverGazeImg,
-                imageAlt: 'Driver Gaze Detection'
+                imageAlt: 'Driver Gaze Detection',
+                githubUrl: 'https://github.com/doomsday4/Driver-Gaze-Analysis.git'
               },
               {
                 id: 'surge-lidar',
@@ -356,7 +361,8 @@ function App() {
                 ],
                 tags: ['Computer Vision', 'LiDAR', 'Object Detection', 'Autonomous Vehicles'],
                 image: surgeLidarImg,
-                imageAlt: 'SURGE LiDAR Research'
+                imageAlt: 'SURGE LiDAR Research',
+                githubUrl: 'https://github.com/doomsday4/surge-2023.git'
               },
               {
                 id: 'robotics-rover',
@@ -384,16 +390,18 @@ function App() {
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
                   <div className="md:flex">
-                    <div className="md:w-1/3 flex items-center justify-center">
-                      <span className="image-frame">
-                        <img
-                          src={featured.image}
-                          alt={featured.imageAlt}
-                          className={featured.id === 'ku-star' ? 'max-w-full h-auto object-contain' : 'w-full h-full object-cover'}
-                        />
-                      </span>
+                    {featured.id !== 'robotics-rover' ? (
+                      <div className="md:w-1/3 flex items-center justify-center">
+                        <span className="image-frame">
+                          <img
+                            src={featured.image}
+                            alt={featured.imageAlt}
+                            className={featured.id === 'ku-star' ? 'max-w-full h-auto object-contain' : 'w-full h-full object-cover'}
+                          />
+                        </span>
                     </div>
-                    <div className="p-8 md:w-2/3">
+                    ) : null}
+                    <div className={featured.id !== 'robotics-rover' ? 'p-8 md:w-2/3' : 'p-8 md:w-full'}>
                       <div className="flex items-center mb-4">
                         <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
                         {featured.period ? (
@@ -412,10 +420,23 @@ function App() {
                         </ul>
                       ) : null}
                       {featured.tags && featured.tags.length > 0 ? (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-3">
                           {featured.tags.map((t, idx) => (
                             <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
                           ))}
+                        </div>
+                      ) : null}
+                      {(featured.youtubeUrl || featured.websiteUrl || featured.githubUrl) ? (
+                        <div className="flex gap-3 mt-2 mb-4">
+                          {featured.youtubeUrl ? (
+                            <a href={featured.youtubeUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">YouTube</a>
+                          ) : null}
+                          {featured.websiteUrl ? (
+                            <a href={featured.websiteUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">Website</a>
+                          ) : null}
+                          {featured.githubUrl ? (
+                            <a href={featured.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a>
+                          ) : null}
                         </div>
                       ) : null}
                     </div>
@@ -437,10 +458,12 @@ function App() {
                         onClick={() => setFeaturedId(item.id)}
                         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedId(item.id); }}
                       >
-                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
+                        <div className="flex items-center mb-2"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
                         <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-gray-200/90 dark:text-gray-200 mb-4">{item.description}</p>
-                        {/* Optional link row could go here if needed */}
+                        <p className="text-gray-200/90 dark:text-gray-200">{item.description}</p>
+                        {item.githubUrl ? (
+                          <div className="mt-3"><a href={item.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a></div>
+                        ) : null}
                       </div>
                     </GlassSurface>
                   ))}
@@ -461,14 +484,14 @@ function App() {
                 company: 'Atlassian',
                 label: 'Software Engineering Intern',
                 labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
-                period: 'Summer 2023',
-                description: "Worked on core product development for one of the world's leading software companies.",
+                period: 'Summer 2025',
+                description: "Worked on core infrastructure development for one of the world's leading software companies.",
                 bullets: [
-                  'Developed and optimized backend services using Golang',
-                  'Implemented CI/CD pipelines improving deployment efficiency by 40%',
-                  'Collaborated with cross-functional teams across multiple time zones'
+                  'Achieved a 3x improvement in test throughput by eliminating blocking using asynchronous goroutine cache handlers',
+                  'Integrated WPR as an additional mocking backend within Criterion, enabling multi-threaded Golang proxy service',
+                  'Replaced in-memory caching with disk-based file caching, improving stability & reducing runtime memory footprint'
                 ],
-                tags: ['Golang', 'Docker', 'Kubernetes', 'AWS'],
+                tags: ['Golang', 'Docker', 'AWS', 'Testing', 'Performance Optimization'],
                 image: atlassianImg,
                 imageAlt: 'Atlassian'
               },
@@ -477,24 +500,34 @@ function App() {
                 company: 'SkyAI',
                 label: 'AI Intern',
                 labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
-                period: 'Winter 2022',
+                period: 'April 2025 - May 2025',
                 description: 'Developed drone tracking algorithms using computer vision and machine learning techniques.',
-                bullets: [],
-                tags: ['Python', 'OpenCV', 'TensorFlow'],
+                bullets: [
+                  'Integrated object tracking algorithms (CSRT) to detect and follow targets in drone video streams',
+                  'Calculated 3D coordinates using pinhole camera models, leveraging real-time drone altitude and rotation matrices',
+                  'Achieved accurate real-time estimation of world coordinates (X, Y, Z) of targets on the ground'
+                ],
+                tags: ['Python', 'OpenCV', 'TensorFlow', 'Computer Vision', 'Machine Learning', 'Drones'],
                 image: skyaiImg,
-                imageAlt: 'SkyAI'
+                imageAlt: 'SkyAI',
+                githubUrl: 'https://github.com/skyai-dev/Tracking-code-comrado.git'
               },
               {
                 id: 'vibinex',
                 company: 'Vibinex',
                 label: 'Software Engineer Intern',
                 labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
-                period: 'Summer 2021',
-                description: 'Contributed to full-stack development of productivity tools for software teams.',
-                bullets: [],
-                tags: ['JavaScript', 'React', 'Node.js'],
+                period: 'Summer 2023',
+                description: 'Contributed to full-stack development of productivity tools for users.',
+                bullets: [
+                  'Transferred the entire codebase from JavaScript to a TypeScript based project using the extension tool Plasmo',
+                  'Analyzed over 10,000 user interactions, leading to 15% increase in conversion rates & user engagement',
+                  'Accelerated feature implementations by 40%, resulting in faster development & reducing time-to-market',
+                ],
+                tags: ['JavaScript', 'React', 'Node.js', 'TypeScript', 'Plasmo', 'Extension Development'],
                 image: 'http://static.photos/office/640x360/7',
-                imageAlt: 'Vibinex'
+                imageAlt: 'Vibinex',
+                githubUrl: 'https://github.com/doomsday4/chrome-extension-Vibinex.git'
               }
             ];
 
@@ -506,12 +539,16 @@ function App() {
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
                   <div className="md:flex">
-                    <div className="md:w-1/4 bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center p-8">
+                    {featured.id !== 'atlassian' && featured.id !== 'skyai' && featured.id !== 'vibinex' ? (
+                      <div className="md:w-1/4 flex items-center justify-center p-8">
                       {featured.image ? (
-                        <span className="image-frame"><img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" /></span>
+                          <span className="image-frame">
+                        <img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" />
+                          </span>
                       ) : null}
                     </div>
-                    <div className="p-8 md:w-3/4">
+                    ) : null}
+                    <div className={featured.id !== 'atlassian' && featured.id !== 'skyai' && featured.id !== 'vibinex' ? 'p-8 md:w-3/4' : 'p-8 md:w-full'}>
                       <div className="flex items-center mb-4">
                         <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
                         {featured.period ? (
@@ -536,6 +573,21 @@ function App() {
                           ))}
                         </div>
                       ) : null}
+                      {(featured.youtubeUrl || featured.websiteUrl) ? (
+                        <div className="flex gap-3 mt-2 mb-4">
+                          {featured.youtubeUrl ? (
+                            <a href={featured.youtubeUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">YouTube</a>
+                          ) : null}
+                          {featured.websiteUrl ? (
+                            <a href={featured.websiteUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">Website</a>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      {featured.githubUrl ? (
+                        <div className="flex gap-3 mt-2 mb-4">
+                          <a href={featured.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </GlassSurface>
@@ -555,15 +607,11 @@ function App() {
                         onClick={() => setFeaturedExp(item.id)}
                         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedExp(item.id); }}
                       >
-                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
+                        <div className="flex items-center mb-2"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div></div>
                         <h3 className="text-xl font-bold mb-2">{item.company}</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
-                        {item.tags && item.tags.length > 0 ? (
-                          <div className="flex flex-wrap gap-2">
-                            {item.tags.map((t, idx) => (
-                              <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
-                            ))}
-                          </div>
+                        <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+                        {item.githubUrl ? (
+                          <div className="mt-3"><a href={item.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a></div>
                         ) : null}
                       </div>
                     </GlassSurface>
@@ -586,110 +634,90 @@ function App() {
                 label: 'Contingent Leader',
                 labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
                 period: '2022-2023',
-                description: "Led IIT Kanpur's contingent of 250+ members at India's largest inter-collegiate cultural festival.",
-                image: 'http://static.photos/sport/1024x576/6',
+                description: "Led IIT Kanpur's contingent of 250+ members at the Inter IIT Cultural Meet 7.0 and secured and overall 4th position from among 23 IITs.",
+                image: interIitImg,
                 imageAlt: 'Inter IIT',
                 metrics: [
                   { value: '250+', label: 'Team Members' },
                   { value: '15', label: 'Medals Won' }
                 ],
-                tags: ['Leadership', 'Event Management', 'Team Building']
+                tags: ['Leadership', 'Event Management', 'Team Building', 'Inter IIT Cultural Meet']
               },
               {
                 id: 'antaragni',
                 title: "Antaragni '24",
                 label: 'Head, Media & Publicity',
                 labelClasses: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
-                period: '2023-2024',
-                description: "Led 120+ member team for Asia's largest college cultural festival with INR 2 Cr budget.",
-                image: 'http://static.photos/event/1024x576/3',
+                period: '2024-2025',
+                description: "Led a 120+ member team for one of the largest college cultural festivals in Asia with INR 2 Cr budget.",
+                image: antaragniImg,
                 imageAlt: 'Antaragni',
                 metrics: [
-                  { value: '1M+', label: 'Reach' },
+                  { value: '1.5M+', label: 'Reach' },
                   { value: '120+', label: 'Team Size' }
                 ],
-                tags: ['Marketing', 'Branding', 'Social Media']
+                  tags: ['Marketing', 'Branding', 'Social Media', 'Event Management', 'Team Building'],
+                  websiteUrl: 'https://antaragni.in/'
               },
               {
                 id: 'film-club',
                 title: 'Film Club, IIT Kanpur',
                 label: 'Coordinator',
                 labelClasses: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
-                period: '2021-2023',
-                description: 'Led film production initiatives, winning Inter IIT medals and reaching 8K+ viewership.',
-                image: 'http://static.photos/event/1024x576/4',
+                period: '2023-2024',
+                  description: 'Led film production initiatives, winning Inter IIT medals and reaching 8K+ viewership on our YouTube channel.',
+                image: filmClubImg,
                 imageAlt: 'Film Club',
                 metrics: [
                   { value: '8K+', label: 'Viewership' },
-                  { value: '3', label: 'Awards' }
+                  { value: '4', label: 'Awards' }
                 ],
-                tags: ['Film Production', 'Storytelling', 'Creative Direction']
+                  tags: ['Film Production', 'Storytelling', 'Creative Direction', 'Inter IIT Cultural Meet'],
+                  youtubeUrl: 'https://www.youtube.com/c/filmclubiitkanpur'
               }
             ];
 
-            const [featuredLead, setFeaturedLead] = useState(leadershipItems[0].id);
-            const featured = leadershipItems.find(i => i.id === featuredLead) || leadershipItems[0];
-            const others = leadershipItems.filter(i => i.id !== featured.id);
+            // single-row layout; no featured selection
 
             return (
               <>
-                <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-                  <div className="md:flex">
-                    <div className="md:w-1/3"><span className="image-frame"><img src={featured.image} alt={featured.imageAlt} className="w-full h-full object-cover" /></span></div>
-                    <div className="p-8 md:w-2/3">
-                      <div className="flex items-center mb-4"><div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>{featured.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>) : null}</div>
-                      <h3 className="text-2xl font-bold mb-4">{featured.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
-                      {featured.metrics && featured.metrics.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                          {featured.metrics.map((m, idx) => (
-                            <div key={idx} className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">{m.value}</div><div className="text-gray-700 dark:text-gray-200">{m.label}</div></div>
-                          ))}
-                        </div>
-                      ) : null}
-                      {featured.tags && featured.tags.length > 0 ? (
-                        <div className="flex flex-wrap gap-2">
-                          {featured.tags.map((t, idx) => (
-                            <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                </GlassSurface>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                  {others.map((item, i) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  {leadershipItems.map((item, i) => (
                     <GlassSurface
                       key={item.id}
-                      className="rounded-xl overflow-hidden glass-card transition-all duration-300 cursor-pointer"
+                      className="rounded-xl overflow-hidden glass-card"
                       data-aos="fade-up"
                       data-aos-delay={(i + 1) * 100}
                     >
-                      <div
-                        className="p-6"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => setFeaturedLead(item.id)}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFeaturedLead(item.id); }}
-                      >
-                        <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
-                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
-                        {item.metrics && item.metrics.length > 0 ? (
-                          <div className="grid grid-cols-2 gap-2 mb-2">
-                            {item.metrics.map((m, idx) => (
-                              <div key={idx}><div className="text-xl font-bold gradient-text">{m.value}</div><div className="text-sm text-gray-500">{m.label}</div></div>
-                            ))}
-                          </div>
-                        ) : null}
-                        {item.tags && item.tags.length > 0 ? (
-                          <div className="flex flex-wrap gap-2">
-                            {item.tags.map((t, idx) => (
-                              <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
-                            ))}
-                          </div>
-                        ) : null}
+                      <div>
+                        <div className="w-full flex items-center justify-center p-6">
+                          <span className="image-frame inline-block">
+                            <img src={item.image} alt={item.imageAlt} className="max-w-full h-auto object-contain" />
+                          </span>
+                        </div>
+                        <div className="p-8">
+                          <div className="flex items-center mb-4"><div className={`${item.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{item.label}</div>{item.period ? (<span className="ml-4 text-gray-500 dark:text-gray-400">{item.period}</span>) : null}</div>
+                          <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                          <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
+                          {item.metrics && item.metrics.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                              {item.metrics.map((m, idx) => (
+                                <div key={idx} className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">{m.value}</div><div className="text-gray-700 dark:text-gray-200">{m.label}</div></div>
+                              ))}
+                            </div>
+                          ) : null}
+                          {/* tags intentionally hidden on leadership cards */}
+                          {(item.youtubeUrl || item.websiteUrl) ? (
+                            <div className="flex gap-3 mt-2 mb-2">
+                              {item.youtubeUrl ? (
+                                <a href={item.youtubeUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">YouTube</a>
+                              ) : null}
+                              {item.websiteUrl ? (
+                                <a href={item.websiteUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">Website</a>
+                              ) : null}
+                            </div>
+                          ) : null}
+                        </div>
                       </div>
                     </GlassSurface>
                   ))}
