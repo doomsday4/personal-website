@@ -161,7 +161,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div id="mobile-menu" className="hidden md:hidden bg-white dark:bg-dark shadow-lg">
+        <div id="mobile-menu" className="hidden shadow-sm transition-colors">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="#home" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
             <a href="#about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">About</a>

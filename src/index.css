@@ -117,6 +117,16 @@ section {
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
 
+/* Collapse header at 1110px */
+@media (max-width: 1110px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile { display: flex !important; }
+}
+@media (min-width: 1111px) {
+  .nav-desktop { display: flex !important; }
+  .nav-mobile { display: none !important; }
+}
+
 #site-nav {
     transition: background 180ms ease, backdrop-filter 180ms ease, -webkit-backdrop-filter 180ms ease, box-shadow 180ms ease;
     will-change: backdrop-filter, background;
