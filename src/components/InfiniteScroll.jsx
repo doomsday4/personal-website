@@ -1,3 +1,5 @@
+import { ASSET_URLS } from '../assetUrls.js';
+
 export default function TravelInfiniteScroll() {
   const filenames = [
     'Coldplay, Mumbai3.jpg',
@@ -43,7 +45,7 @@ export default function TravelInfiniteScroll() {
 
   const files = filenames.map((f) => {
     const caption = toCaption(f);
-    const src = new URL(`../assets/travel/${f}`, import.meta.url).href;
+    const src = ASSET_URLS[`travel/${f}`];
     return { src, alt: caption, caption, place: caption };
   });
 

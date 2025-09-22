@@ -7,10 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "upload-assets": "node scripts/upload-assets.js"
   },
   "dependencies": {
+    "@vercel/blob": "^2.0.0",
     "aos": "^2.3.4",
+    "dotenv": "^17.2.2",
     "gsap": "^3.13.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

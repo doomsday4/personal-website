@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef } from 'react'
-const profileImg = new URL('./assets/amankhilani.jpg', import.meta.url).href
-const kuStarImg = new URL('./assets/ku-star.jpg', import.meta.url).href
-const driverGazeImg = new URL('./assets/driver-gaze.png', import.meta.url).href
-const surgeLidarImg = new URL('./assets/surge-lidar.jpg', import.meta.url).href
-const roboticsRoverImg = new URL('./assets/robotics-rover.webp', import.meta.url).href
-const atlassianImg = new URL('./assets/atlassian.png', import.meta.url).href
-const antaragniImg = new URL('./assets/antaragni.jpg', import.meta.url).href
-const interIitImg = new URL('./assets/inter-iit.jpg', import.meta.url).href
-const filmClubImg = new URL('./assets/film-club.jpg', import.meta.url).href
-const skyaiImg = new URL('./assets/skyai.jpg', import.meta.url).href
+import { ASSET_URLS } from './assetUrls.js'
+
+const profileImg = ASSET_URLS['amankhilani.jpg']
+const kuStarImg = ASSET_URLS['ku-star.jpg']
+const driverGazeImg = ASSET_URLS['driver-gaze.png']
+const surgeLidarImg = ASSET_URLS['surge-lidar.jpg']
+const roboticsRoverImg = ASSET_URLS['robotics-rover.webp']
+const atlassianImg = ASSET_URLS['atlassian.png']
+const antaragniImg = ASSET_URLS['antaragni.jpg']
+const interIitImg = ASSET_URLS['inter-iit.jpg']
+const filmClubImg = ASSET_URLS['film-club.jpg']
+const skyaiImg = 'http://static.photos/office/640x360/7' // fallback since skyai.jpg wasn't found
 import LiquidEtherBackground from './components/LiquidEther.jsx'
 import TravelInfiniteScroll from './components/InfiniteScroll.jsx'
 import GlassSurface from './components/GlassSurface.jsx'
@@ -21,7 +23,7 @@ function App() {
 
   useEffect(() => {
     // Force dark theme permanently
-    document.documentElement.classList.add('dark')
+        document.documentElement.classList.add('dark')
 
     const mobileMenuButton = document.getElementById('mobile-menu-button')
     const mobileMenu = document.getElementById('mobile-menu')
@@ -183,7 +185,7 @@ function App() {
                <img src={profileImg} alt="Aman Khilani" className="w-full h-full object-cover transform transition-transform duration-500 ease-out scale-105 group-hover:scale-110" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Aman Khilani</h1>
-            <h2 className="text-xl md:text-2xl font-medium mb-6">Exploring intersections of engineering, creativity and life.</h2>
+            <h2 className="text-xl md:text-2xl font-medium mb-6">Exploring intersections of engineering, creativity, and life.</h2>
           </div>
         </div>
       </section>
@@ -213,7 +215,7 @@ function App() {
                 <div className="border-l-4 border-indigo-500 pl-6 py-2">
                   <h4 className="font-bold">Middle School, St. Anselm's Sr. Sec. School Ajmer</h4>
                   <p className="text-gray-600 dark:text-gray-300">CBSE Board</p>
-                  <p className="text-sm text-gray-400">2016 - 2019</p>
+                  <p className="text-sm text-gray-400">2014 - 2019</p>
                 </div>
               </div>
             </div>
@@ -281,22 +283,22 @@ function App() {
                     <ul className="list-disc list-inside space-y-2">
                       <li>From over 2000 entries, nominated among the top 40 submissions in the IFP Short Scriptwriting Challenge ’23</li>
                       <li>Recognized among the top 30 submissions from 1500+ entries in the IFP 50hr Film Making Challenge ’22</li>
-                    </ul>
-                  )
-                },
-                {
-                  color: '#060010',
+                  </ul>
+                )
+              },
+              {
+                color: '#060010',
                   title: 'Inter IIT Cultural Meet',
-                  label: 'Category',
-                  content: (
-                    <ul className="list-disc list-inside space-y-2">
+                label: 'Category',
+                content: (
+                  <ul className="list-disc list-inside space-y-2">
                       <li>Acheived a Silver in the 51hr Film Making Challenge & an overall Silver in Filmmaking Arts Cup at Inter IIT Cultural Meet 7.0</li>
                       <li>Directed a film, securing the Silver medal in the 51hr Film Making Challenge, in the Filmmaking Arts Cup at Inter IIT Cultural Meet 6.0</li>
-                    </ul>
-                  )
-                }
-              ]}
-            />
+                  </ul>
+                )
+              }
+            ]}
+          />
           </div>
         </div>
       </section>
@@ -396,8 +398,8 @@ function App() {
 
             return (
               <>
-                <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-                  <div className="md:flex">
+          <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
+            <div className="md:flex">
                     {featured.id !== 'robotics-rover' ? (
                       <div className="md:w-1/3 flex items-center justify-center">
                         <span className="image-frame">
@@ -407,15 +409,15 @@ function App() {
                             className={featured.id === 'ku-star' ? 'max-w-full h-auto object-contain' : 'w-full h-full object-cover'}
                           />
                         </span>
-                    </div>
+              </div>
                     ) : null}
                     <div className={featured.id !== 'robotics-rover' ? 'p-8 md:w-2/3' : 'p-8 md:w-full'}>
-                      <div className="flex items-center mb-4">
+                <div className="flex items-center mb-4">
                         <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
                         {featured.period ? (
                           <span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>
                         ) : null}
-                      </div>
+                </div>
                       <h3 className="text-2xl font-bold mb-4">{featured.title}</h3>
                       {featured.description ? (
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
@@ -425,7 +427,7 @@ function App() {
                           {featured.bullets.map((b, idx) => (
                             <li key={idx}>{b}</li>
                           ))}
-                        </ul>
+                </ul>
                       ) : null}
                       {featured.tags && featured.tags.length > 0 ? (
                         <div className="flex flex-wrap gap-2 mb-3">
@@ -445,13 +447,13 @@ function App() {
                           {featured.githubUrl ? (
                             <a href={featured.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a>
                           ) : null}
-                        </div>
+                </div>
                       ) : null}
-                    </div>
-                  </div>
-                </GlassSurface>
+              </div>
+            </div>
+          </GlassSurface>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {others.map((item, i) => (
                     <GlassSurface
                       key={item.id}
@@ -472,10 +474,10 @@ function App() {
                         {item.githubUrl ? (
                           <div className="mt-3"><a href={item.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a></div>
                         ) : null}
-                      </div>
-                    </GlassSurface>
+              </div>
+            </GlassSurface>
                   ))}
-                </div>
+              </div>
               </>
             );
           })()}
@@ -558,7 +560,7 @@ function App() {
             return (
               <>
                 <GlassSurface className="rounded-xl overflow-hidden mb-12 glass-card" data-aos="fade-up">
-                  <div className="md:flex">
+            <div className="md:flex">
                     {featured.id !== 'atlassian' && featured.id !== 'skyai' && featured.id !== 'vibinex' ? (
                       <div className="md:w-1/4 flex items-center justify-center p-8">
                       {featured.image ? (
@@ -566,15 +568,15 @@ function App() {
                         <img src={featured.image} alt={featured.imageAlt} className="w-full max-w-[200px]" />
                           </span>
                       ) : null}
-                    </div>
+              </div>
                     ) : null}
                     <div className={featured.id !== 'atlassian' && featured.id !== 'skyai' && featured.id !== 'vibinex' ? 'p-8 md:w-3/4' : 'p-8 md:w-full'}>
-                      <div className="flex items-center mb-4">
+                <div className="flex items-center mb-4">
                         <div className={`${featured.labelClasses} px-3 py-1 rounded-full text-sm font-medium`}>{featured.label}</div>
                         {featured.period ? (
                           <span className="ml-4 text-gray-500 dark:text-gray-400">{featured.period}</span>
                         ) : null}
-                      </div>
+                </div>
                       <h3 className="text-2xl font-bold mb-2">{featured.company}</h3>
                       {featured.description ? (
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{featured.description}</p>
@@ -584,10 +586,10 @@ function App() {
                           {featured.bullets.map((b, idx) => (
                             <li key={idx}>{b}</li>
                           ))}
-                        </ul>
+                </ul>
                       ) : null}
                       {featured.tags && featured.tags.length > 0 ? (
-                        <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                           {featured.tags.map((t, idx) => (
                             <span key={idx} className="chip-glass px-3 py-1 rounded-full text-sm text-gray-900 dark:text-gray-100">{t}</span>
                           ))}
@@ -606,13 +608,13 @@ function App() {
                       {featured.githubUrl ? (
                         <div className="flex gap-3 mt-2 mb-4">
                           <a href={featured.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a>
-                        </div>
+                </div>
                       ) : null}
-                    </div>
-                  </div>
-                </GlassSurface>
+              </div>
+            </div>
+          </GlassSurface>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {others.map((item, i) => (
                     <GlassSurface
                       key={item.id}
@@ -633,10 +635,10 @@ function App() {
                         {item.githubUrl ? (
                           <div className="mt-3"><a href={item.githubUrl} target="_blank" rel="noreferrer" className="underline text-blue-600 dark:text-blue-400">GitHub</a></div>
                         ) : null}
-                      </div>
-                    </GlassSurface>
+              </div>
+            </GlassSurface>
                   ))}
-                </div>
+              </div>
               </>
             );
           })()}
@@ -653,7 +655,7 @@ function App() {
                 title: 'Inter IIT Cultural Meet 7.0',
                 label: 'Contingent Leader',
                 labelClasses: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
-                period: '2022-2023',
+                period: 'Winter 2024',
                 description: "Led IIT Kanpur's contingent of 250+ members at the Inter IIT Cultural Meet 7.0 and secured and overall 4th position from among 23 IITs.",
                 image: interIitImg,
                 imageAlt: 'Inter IIT',
@@ -720,7 +722,7 @@ function App() {
                           <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
                         <p className="text-gray-600 dark:text-gray-300 mb-4">{item.description}</p>
                         {item.metrics && item.metrics.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             {item.metrics.map((m, idx) => (
                                 <div key={idx} className="tile-glass glass-card p-4 rounded-lg"><div className="text-3xl font-bold gradient-text mb-1">{m.value}</div><div className="text-gray-700 dark:text-gray-200">{m.label}</div></div>
                             ))}
@@ -767,8 +769,8 @@ function App() {
                 <div><div className="flex justify-between mb-1"><span>TensorFlow</span><span>60%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '60%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>OpenCV</span><span>80%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '80%' }}></div></div></div>
                 <div><div className="flex justify-between mb-1"><span>Scikit-learn</span><span>65%</span></div><div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div className="bg-purple-500 h-2 rounded-full" style={{ width: '65%' }}></div></div></div>
-              </div>
-            </GlassSurface>
+            </div>
+          </GlassSurface>
             <GlassSurface className="rounded-xl p-6 glass-card" data-aos="fade-up" data-aos-delay="300">
               <h3 className="text-xl font-bold mb-4 flex items-center"><i data-feather="database" className="text-green-500 mr-2"></i>Web & Data</h3>
               <div className="space-y-3">
@@ -831,7 +833,7 @@ function App() {
           <div className="grid grid-cols-1 gap-12 place-items-center">
             <div data-aos="fade-right" className="text-center">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">Feel free to reach out for collaborations, opportunities and if possible, NOT just to say hello haha! </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">Reach out for collaborations, opportunities, or meaningful conversations—preferably with a purpose beyond testing if this email actually works.</p>
               <div className="space-y-6">
                 <a href="mailto:amankhilani.ajmer@gmail.com" className="inline-flex items-center gap-3 px-4 py-3 chip-glass rounded-full focus:ring-2 focus:ring-blue-500" aria-label="Email">
                   <i data-feather="mail" className="text-blue-500 dark:text-blue-400"></i>
@@ -852,8 +854,17 @@ function App() {
       </section>
 
       <footer className="text-gray-300 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">            
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-left"><p>© 2025 Aman Khilani. All rights reserved.</p></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-4">
+          <p className="text-sm text-gray-400">
+            Built with <span className="text-blue-400">React</span>, <span className="text-blue-400">Vite</span>, and <span className="text-blue-400">Tailwind CSS</span>
+          </p>
+          <p className="text-xs text-gray-500">
+            <a href="https://github.com/doomsday4/personal-website" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">View source code on GitHub</a> • 
+            Special thanks to <a href="https://reactbits.dev" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">React Bits</a> for inspiring some components
+          </p>
+            </div>
+        <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-center"><p>© 2025 Aman Khilani. All rights reserved.</p></div>
       </div>
       </footer>
     </>
