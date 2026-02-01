@@ -864,7 +864,7 @@ function App() {
             Special thanks to <a href="https://reactbits.dev" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">React Bits</a> for inspiring some components
           </p>
             </div>
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-center"><p>© 2025 Aman Khilani. All rights reserved.</p></div>
+        <div className="mt-8 pt-8 border-t border-gray-800 text-center md:text-center"><p>© 2026 Aman Khilani. All rights reserved.</p></div>
       </div>
       </footer>
     </>
